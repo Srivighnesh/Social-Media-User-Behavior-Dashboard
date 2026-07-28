@@ -1,0 +1,167 @@
+{
+  "title": "Social Media User Behavior Dataset",
+  "id": "hamnamunir/social-media-user-behavior",
+  "licenses": [{"name": "CC0-1.0"}],
+  "keywords": [
+    "social media",
+    "user behavior",
+    "mental health",
+    "synthetic data",
+    "classification",
+    "clustering",
+    "EDA",
+    "digital wellness",
+    "engagement",
+    "social commerce"
+  ],
+  "collaborators": [],
+  "data": [
+    {
+      "description": "Main dataset containing 2,000 synthetic social media user records with 34 behavioral, demographic, and engagement features across 8 major platforms.",
+      "name": "social_media_user_behavior.csv",
+      "totalBytes": 445644,
+      "columns": [
+        {
+          "name": "user_id",
+          "description": "Unique identifier for each user (format: USR00001 to USR02000)"
+        },
+        {
+          "name": "age",
+          "description": "Age of the user in years. Range: 13 to 65."
+        },
+        {
+          "name": "gender",
+          "description": "Gender identity of the user. Values: Male, Female, Non-binary, Prefer not to say."
+        },
+        {
+          "name": "country",
+          "description": "Country of residence. Covers 10 countries: Pakistan, India, USA, UK, UAE, Canada, Germany, Australia, Brazil, Nigeria."
+        },
+        {
+          "name": "profession",
+          "description": "User occupation or job role. Values: Student, Engineer, Designer, Teacher, Freelancer, Doctor, Marketer, Entrepreneur, Researcher, Other."
+        },
+        {
+          "name": "primary_platform",
+          "description": "The social media platform the user spends the most time on. Values: Instagram, TikTok, Twitter/X, Facebook, YouTube, Snapchat, LinkedIn, Pinterest."
+        },
+        {
+          "name": "platforms_used_count",
+          "description": "Total number of different social media platforms the user actively uses. Range: 1 to 5."
+        },
+        {
+          "name": "daily_usage_hours",
+          "description": "Average number of hours spent on social media per day. Range: 0.5 to 12 hours."
+        },
+        {
+          "name": "sessions_per_day",
+          "description": "Number of separate app/website sessions opened per day. Range: 1 to 20."
+        },
+        {
+          "name": "avg_session_duration_min",
+          "description": "Average duration of a single social media session in minutes."
+        },
+        {
+          "name": "preferred_device",
+          "description": "Primary device used for accessing social media. Values: Smartphone, Laptop, Tablet, Desktop, Smart TV."
+        },
+        {
+          "name": "peak_usage_time",
+          "description": "Time of day when the user is most active on social media. Values: Morning (6-10am), Afternoon (12-4pm), Evening (6-9pm), Night (9pm-12am), Late Night (12am+)."
+        },
+        {
+          "name": "followers_count",
+          "description": "Number of followers the user has on their primary platform. Range: 0 to ~5,000,000."
+        },
+        {
+          "name": "following_count",
+          "description": "Number of accounts the user follows on their primary platform. Range: 0 to 10,000."
+        },
+        {
+          "name": "posts_per_week",
+          "description": "Average number of posts or content pieces published by the user per week. Range: 0 to 50."
+        },
+        {
+          "name": "likes_given_per_day",
+          "description": "Average number of likes or reactions the user gives to other posts per day. Range: 0 to 200."
+        },
+        {
+          "name": "comments_per_day",
+          "description": "Average number of comments the user posts per day. Range: 0 to 50."
+        },
+        {
+          "name": "shares_per_day",
+          "description": "Average number of posts the user shares or reposts per day. Range: 0 to 30."
+        },
+        {
+          "name": "dms_sent_per_day",
+          "description": "Average number of direct messages sent by the user per day. Range: 0 to 100."
+        },
+        {
+          "name": "preferred_content_type",
+          "description": "Type of content the user most frequently consumes. Values: Videos, Reels/Shorts, Photos, Stories, Memes, News, Educational, Entertainment."
+        },
+        {
+          "name": "scroll_speed",
+          "description": "Typical scrolling behavior when browsing social media feeds. Values: Slow, Medium, Fast."
+        },
+        {
+          "name": "ad_click_rate",
+          "description": "Proportion of advertisements clicked by the user out of total ads shown. Range: 0.0 to 1.0."
+        },
+        {
+          "name": "purchased_via_social_media",
+          "description": "Whether the user has purchased products or services via social media. Values: Yes, No, Sometimes."
+        },
+        {
+          "name": "monthly_spend_via_social_usd",
+          "description": "Estimated monthly spending in USD on purchases made through social media. 0 for non-buyers."
+        },
+        {
+          "name": "primary_purpose",
+          "description": "Main reason the user uses social media. Values: Entertainment, Networking, News & Updates, Business/Marketing, Learning, Socializing."
+        },
+        {
+          "name": "sleep_disruption",
+          "description": "Self-reported impact of social media use on the user sleep quality. Values: No impact, Mild impact, Moderate impact, Severe impact."
+        },
+        {
+          "name": "self_reported_mental_health_score",
+          "description": "User self-rated mental health score on a scale of 1 (Very Poor) to 10 (Excellent)."
+        },
+        {
+          "name": "screen_time_concern",
+          "description": "Whether the user is personally concerned about the amount of time they spend on social media. Values: Yes, No, Somewhat."
+        },
+        {
+          "name": "notification_frequency",
+          "description": "App notification settings chosen by the user. Values: Always On, Selected, Do Not Disturb, Off."
+        },
+        {
+          "name": "privacy_setting",
+          "description": "Profile visibility setting on the primary platform. Values: Public, Friends Only, Private."
+        },
+        {
+          "name": "influencer_status",
+          "description": "Whether the user qualifies as an influencer based on follower count (greater than 10,000 followers). Values: Yes, No."
+        },
+        {
+          "name": "account_join_date",
+          "description": "Date the user joined their primary social media platform. Format: YYYY-MM-DD. Range: 2022-01-01 to 2024-12-31."
+        },
+        {
+          "name": "mood_while_scrolling",
+          "description": "Typical mood the user reports experiencing while browsing social media. Values: Happy, Neutral, Stressed, Relaxed, Bored, Inspired."
+        },
+        {
+          "name": "takes_social_media_breaks",
+          "description": "Whether the user intentionally takes breaks or digital detox periods from social media. Values: Yes, No, Occasionally."
+        }
+      ]
+    },
+    {
+      "description": "Full documentation including dataset overview, column schema, use cases, suggested research questions, citation, and author information.",
+      "name": "README.md"
+    }
+  ]
+}
