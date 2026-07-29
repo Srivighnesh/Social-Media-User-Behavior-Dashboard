@@ -27,7 +27,7 @@ from sklearn.preprocessing import StandardScaler
 # ----------------------------------------------------------------------------
 st.set_page_config(
     page_title="Social Media Behavior — Unsupervised Dashboard",
-    page_icon="📊",
+    page_icon="ICONS/bulhorn.png",
     layout="wide",
 )
 
@@ -106,14 +106,14 @@ CATEGORIES = {
             "preferred_content_type",
             "mood_while_scrolling",
         ],
-        category=[
+        numirical=[
             "posts_per_week",
             "likes_given_per_day",
             "comments_per_day",
             "shares_per_day",
+            "ad_click_rate",    
         ],
-        numirical=[
-            "ad_click_rate",
+        category = [
             "preferred_content_type",
             "mood_while_scrolling",
         ],
@@ -150,6 +150,16 @@ CATEGORIES = {
             'shares_per_day': {
                 'bins': [0, 1, 3, 5, 8],
                 'labels': ['Low Sharing', 'Moderate Sharing', 'Active Sharing', 'High Sharing']
+            },
+
+            'likes_given_per_day': {
+                'bins': [0, 5, 10, 15, 20],
+                'labels': ['Low Likes', 'Moderate Likes', 'Active Likes', 'High Likes']
+            },
+            'ad_click_rate': {  
+                
+                'bins': [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.10, 0.15, 0.20, 0.30, np.inf],
+                'labels': ['<1%', '1-2%', '2-3%', '3-4%', '4-5%', '5-10%', '10-15%', '15-20%', '20-30%', '>30%']
             },
         },
     ),
@@ -415,7 +425,15 @@ CATEGORIES = {
     ),
 
 }
-
+CATEGORY_ICONS = {
+    "User Behavior": "👤",
+    "Engagement": "❤️",
+    "Social Influence": "🌟",
+    "Spending & Marketing": "💰",
+    "Demographic & Lifestyle": "🌍",
+    "Mental Health & Usage Impact": "🧠",
+    "Platform Usage Behavior": "📱",
+}
 # BINSUSERBEHAVIOUR = {
 #     'daily_usage_hours': {
 #         'bins': [0, 1, 3, 6, 24],
@@ -612,10 +630,16 @@ def comparison_chart(sil_k, dbi_k, sil_d, dbi_d):
             "Davies-Bouldin Index": [dbi_k, dbi_d],
         }
     )
+
     fig = make_subplots(
-        rows=1, cols=2,
-        subplot_titles=("Silhouette Score (higher is better)", "Davies-Bouldin Index (lower is better)"),
+        rows=1,
+        cols=2,
+        subplot_titles=(
+            "Silhouette Score (Higher is Better)",
+            "Davies-Bouldin Index (Lower is Better)",
+        ),
     )
+
     fig_sil = px.bar(
         scores_df,
         x="Algorithm",
@@ -623,8 +647,9 @@ def comparison_chart(sil_k, dbi_k, sil_d, dbi_d):
         color="Algorithm",
         color_discrete_sequence=["#636EFA", "#EF553B"],
         text_auto=".2f",
-        template="plotly_white",
+        template="plotly",      # <-- adaptive
     )
+
     fig_dbi = px.scatter(
         scores_df,
         x="Algorithm",
@@ -632,64 +657,120 @@ def comparison_chart(sil_k, dbi_k, sil_d, dbi_d):
         color="Algorithm",
         color_discrete_sequence=["#00CC96", "#AB63FA"],
         text="Davies-Bouldin Index",
-        template="plotly_white",
+        template="plotly",      # <-- adaptive
     )
+
     for trace in fig_sil.data:
         fig.add_trace(trace, row=1, col=1)
+
     for trace in fig_dbi.data:
         fig.add_trace(trace, row=1, col=2)
-    fig.update_traces(selector=dict(type="bar"), textposition="outside", marker_line_width=0)
-    fig.update_traces(selector=dict(type="scatter"), mode="markers+text", textposition="top center", marker=dict(size=16, line=dict(width=0)))
+
+    fig.update_traces(
+        selector=dict(type="bar"),
+        textposition="outside",
+        marker_line_width=0,
+    )
+
+    fig.update_traces(
+        selector=dict(type="scatter"),
+        mode="markers+text",
+        textposition="top center",
+        marker=dict(size=16, line=dict(width=0)),
+    )
+
     fig.update_layout(
         height=460,
         showlegend=False,
         title_x=0.5,
         margin=dict(t=70, b=40, l=40, r=40),
-        plot_bgcolor="white",
+        template="plotly",              # <-- adaptive
+        plot_bgcolor="rgba(0,0,0,0)",   # transparent
+        paper_bgcolor="rgba(0,0,0,0)",  # transparent
+        font=dict(size=13),
     )
-    fig.update_xaxes(showgrid=False)
-    fig.update_yaxes(gridcolor="#E5E5E5")
+
+    fig.update_xaxes(
+        showgrid=False,
+        zeroline=False,
+    )
+
+    fig.update_yaxes(
+        gridcolor="rgba(150,150,150,0.25)",  # visible in both themes
+        zeroline=False,
+    )
+
     return fig
 
 
 def feature_distribution_figs(df: pd.DataFrame, features: list[str]):
     """Return a list of (feature, plotly figure) for a quick EDA look."""
     figs = []
+
     for f in features:
+
         if pd.api.types.is_numeric_dtype(df[f]):
+
             fig = px.histogram(
                 df,
                 x=f,
                 nbins=30,
-                title=f"Distribution of {f}",
-                color_discrete_sequence=["#636EFA"],
-                template="plotly_white",
-                opacity=0.85
+                title=f.replace("_", " ").title(),
+                color_discrete_sequence=px.colors.qualitative.Safe,
+                template="plotly",
+                opacity=0.9,
             )
-            fig.update_traces(marker_line_width=0, marker_color="#636EFA")
+
+            fig.update_traces(
+                marker_line_width=0,
+                hovertemplate="<b>%{x}</b><br>Count: %{y}<extra></extra>",
+            )
+
         else:
+
             counts = df[f].value_counts().reset_index()
-            counts.columns = [f, "count"]
+            counts.columns = [f, "Count"]
+
             fig = px.bar(
                 counts,
                 x=f,
-                y="count",
-                title=f"Distribution of {f}",
-                template="plotly_white",
-                color_discrete_sequence=["#636EFA"],    
-            
+                y="Count",
+                title=f.replace("_", " ").title(),
+               color_discrete_sequence=px.colors.qualitative.Safe,
+                template="plotly",
+                text_auto=True,
             )
+
+            fig.update_traces(
+                hovertemplate="<b>%{x}</b><br>Count: %{y}<extra></extra>"
+            )
+
         fig.update_layout(
-            height=350,
+            height=300,
             title_x=0.5,
-            plot_bgcolor="white",
-            margin=dict(t=45, b=35, l=35, r=20),
+            template="plotly",
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(0,0,0,0)",
+            margin=dict(t=50, b=30, l=20, r=20),
             xaxis_title=None,
-            yaxis_title=None,
+            yaxis_title="Count",
+            showlegend=False,
+            font=dict(size=13),
         )
-        fig.update_xaxes(showgrid=False)
-        fig.update_yaxes(gridcolor="#E5E5E5")
+
+        fig.update_xaxes(
+            showgrid=False,
+            zeroline=False,
+        )
+
+        fig.update_yaxes(
+            showgrid=True,
+            gridcolor="rgba(150,150,150,0.20)",
+            zeroline=False,
+        )
+
         figs.append((f, fig))
+
     return figs
 
 def features_categorical(features, df, cluster_col):
@@ -733,6 +814,7 @@ def features_categorical(features, df, cluster_col):
         figs.append((feature, fig))
 
     return figs
+
 def features_numerical(category_config, cluster_col, df):
 
     figs = []
@@ -774,7 +856,7 @@ def features_numerical(category_config, cluster_col, df):
             barmode="group",
             text="Count",
             width=800,height=500,
-            title=f"{feature.replace('_', ' ').title()} Distribution by Cluster",
+            title=f"{feature.replace('_', ' ').title()}",
             color_discrete_sequence=px.colors.qualitative.Bold,
             template="plotly_white"
         )
@@ -817,14 +899,27 @@ def features_numerical(category_config, cluster_col, df):
 # ----------------------------------------------------------------------------
 # Sidebar navigation
 # ----------------------------------------------------------------------------
-st.sidebar.title("📊 Navigation")
-page = st.sidebar.radio("Go to", ["🏠 Dataset Overview"] + [f"🔎 {c}" for c in CATEGORIES])
+st.sidebar.title("☰ Navigation")
+# page = st.sidebar.radio("Go to", ["🏠 Dataset Overview"] + [f"🔎 {c}" for c in CATEGORIES])
+pages = ["🏠 Dataset Overview"] + [
+    f"{CATEGORY_ICONS.get(category, '📂')} {category}"
+    for category in CATEGORIES
+]
+
+page = st.sidebar.radio("Go to", pages)
 
 st.sidebar.markdown("---")
-st.sidebar.caption(
-    "Each category runs the same pipeline: feature prep → elbow method → "
-    "KMeans → DBSCAN → PCA plot → cluster profiling → algorithm comparison."
-)
+st.sidebar.markdown("""
+### 🔄 Analysis Workflow
+
+- 📋 Feature Preparation
+- 📐 Elbow Method
+- 🤖 K-Means Clustering
+- 🔍 DBSCAN Clustering
+- 📉 PCA Visualization
+- 👥 Cluster Profiling
+- 📊 Algorithm Comparison
+""")
 
 # ----------------------------------------------------------------------------
 # Main
@@ -864,7 +959,7 @@ if page == "🏠 Dataset Overview":
 
 # ---- Category pages ----
 else:
-    category = page.replace("🔎 ", "")
+    category = page.split(" ", 1)[1]
     cfg = CATEGORIES[category]
     features = cfg["features"]
     numirical_features = cfg["numirical"]
@@ -877,8 +972,8 @@ else:
 
     X_scaled, X_encoded = preprocess_features(df, features)
 
-    tab_overview, tab_kmeans, tab_dbscan, tab_compare, tab_patterns = st.tabs(
-        ["Feature Overview", "KMeans Clustering", "DBSCAN Clustering", "Algorithm Comparison", "Patterns Comparison"]
+    tab_overview, tab_kmeans, tab_dbscan, tab_compare, tab_patterns,tab_patterns_dbscan = st.tabs(
+        ["Feature Overview", "KMeans Clustering", "DBSCAN Clustering", "Algorithm Comparison", "Patterns Comparison by KMeans", "Patterns Comparison by DBSCAN"]
     )
 
     # --- Feature overview ---
@@ -937,13 +1032,78 @@ else:
         )
         st.markdown("#### Cluster profile")
         df["_profile_col"] = label_col.values
-        numeric_summary, cat_summary = cluster_profile(df, "_profile_col", features)
+        numeric_summary, cat_summary = cluster_profile(df, "_profile_col", features) # CLuster profiling for KMeans
+
+        # ---------------- Cluster Profile ----------------
+        st.markdown("### Cluster Profile Summary")
+
         if numeric_summary is not None:
-            st.markdown("**Average of numeric features per cluster**")
-            st.dataframe(numeric_summary, use_container_width=True)
+            st.markdown("#### Average Numeric Features")
+
+            styled_numeric = (
+                numeric_summary.style
+                .format("{:.2f}")
+                .background_gradient(cmap="Blues", axis=0)
+                .highlight_max(color="#90EE90", axis=0)   # Highest value
+                .highlight_min(color="#FFCCCB", axis=0)   # Lowest value
+                .set_properties(**{
+                    "text-align": "center",
+                    "font-size": "14px",
+                    "font-weqight": "bold"
+                })
+                .set_table_styles([
+                    {
+                        "selector": "th",
+                        "props": [
+                            ("background-color", "#1F4E79"),
+                            ("color", "white"),
+                            ("font-weight", "bold"),
+                            ("text-align", "center"),
+                            ("padding", "8px")
+                        ]
+                    },
+                    {
+                        "selector": "td",
+                        "props": [
+                            ("padding", "6px")
+                        ]
+                    }
+                ])
+            )
+
+            st.dataframe(styled_numeric, use_container_width=True)
+
         if cat_summary is not None:
-            st.markdown("**Most common category per cluster**")
-            st.dataframe(cat_summary, use_container_width=True)
+            st.markdown("#### Dominant Categorical Features")
+
+            styled_cat = (
+                cat_summary.style
+                .set_properties(**{
+                    "text-align": "center",
+                    "font-size": "14px",
+                    "font-weqight": "bold"
+                })
+                .set_table_styles([
+                    {
+                        "selector": "th",
+                        "props": [
+                            ("background-color", "#2E8B57"),
+                            ("color", "white"),
+                            ("font-weight", "bold"),
+                            ("text-align", "center"),
+                            ("padding", "8px")
+                        ]
+                    },
+                    {
+                        "selector": "td",
+                        "props": [
+                            ("padding", "6px")
+                        ]
+                    }
+                ])
+            )
+
+            st.dataframe(styled_cat, use_container_width=True)
 
     # --- DBSCAN ---
     with tab_dbscan:
@@ -988,7 +1148,8 @@ else:
 
         st.markdown("#### Cluster profile")
         df["_profile_col_db"] = pca_df_db["Segment"].values
-        numeric_summary_db, cat_summary_db = cluster_profile(df, "_profile_col_db", features)
+        numeric_summary_db, cat_summary_db = cluster_profile(df, "_profile_col_db", features) # Cluster profiling for DBSCAN
+
         if numeric_summary_db is not None:
             st.markdown("**Average of numeric features per cluster**")
             st.dataframe(numeric_summary_db, use_container_width=True)
@@ -1046,6 +1207,53 @@ else:
         figures_numirical = features_numerical(
             cfg,
             "_profile_col",
+            df
+
+        )
+
+        for i in range(0,len(figures_numirical),2):
+            
+            col1, col2 = st.columns(2)
+
+            feature, fig = figures_numirical[i]
+            with col1:
+                st.plotly_chart(fig, use_container_width=True)
+
+            if i + 1 < len(figures_numirical):
+                feature,fig = figures_numirical[i + 1]
+                with col2:
+                    st.plotly_chart(fig, use_container_width=True)
+
+    with tab_patterns_dbscan:
+        # Categorical Feature Comparison By DBSCAN
+        st.subheader("Categorical Feature Pattens BY DBSCAN")
+        st.caption("This section compares the distribution of categorical features across DBSCAN ")
+
+        figures = features_categorical(
+            category_features,
+            df,
+            "_profile_col_db"
+        )
+
+        for i in range(0, len(figures), 2):
+
+            col1, col2 = st.columns(2)
+
+            feature, fig = figures[i]
+            with col1:
+                st.plotly_chart(fig, use_container_width=True)
+
+            if i + 1 < len(figures):
+                feature, fig = figures[i + 1]
+                with col2:
+                    st.plotly_chart(fig, use_container_width=True)
+
+        # Numirical features Comparison by DBSCAN 
+        st.subheader("Numirical Features Pattens By DBSCAN")
+        st.caption("This section compares the distribution of numirical features across DBSCAN ")
+        figures_numirical = features_numerical(
+            cfg,
+            "_profile_col_db",
             df
 
         )
