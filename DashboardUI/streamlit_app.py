@@ -1188,18 +1188,24 @@ else:
             "_profile_col"
         )
 
+        config = {
+            "editable": False,
+            "displaylogo": False,
+            "scrollZoom": False
+        }
+
         for i in range(0, len(figures), 2):
 
             col1, col2 = st.columns(2)
 
             feature, fig = figures[i]
             with col1:
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, config=config)
 
             if i + 1 < len(figures):
                 feature, fig = figures[i + 1]
                 with col2:
-                    st.plotly_chart(fig, use_container_width=True)
+                    st.plotly_chart(fig, use_container_width=True, config=config)
 
         # Numirical features Comparison by kmeans 
         st.subheader("Numirical Features Pattens By Kmeans")
@@ -1217,12 +1223,12 @@ else:
 
             feature, fig = figures_numirical[i]
             with col1:
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, config=config)
 
             if i + 1 < len(figures_numirical):
                 feature,fig = figures_numirical[i + 1]
                 with col2:
-                    st.plotly_chart(fig, use_container_width=True)
+                    st.plotly_chart(fig, use_container_width=True, config=config    )
 
     with tab_patterns_dbscan:
         # Categorical Feature Comparison By DBSCAN
@@ -1241,12 +1247,12 @@ else:
 
             feature, fig = figures[i]
             with col1:
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, config=config)
 
             if i + 1 < len(figures):
                 feature, fig = figures[i + 1]
                 with col2:
-                    st.plotly_chart(fig, use_container_width=True)
+                    st.plotly_chart(fig, use_container_width=True, config=config)
 
         # Numirical features Comparison by DBSCAN 
         st.subheader("Numirical Features Pattens By DBSCAN")
@@ -1264,12 +1270,12 @@ else:
 
             feature, fig = figures_numirical[i]
             with col1:
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, config=config)
 
             if i + 1 < len(figures_numirical):
                 feature,fig = figures_numirical[i + 1]
                 with col2:
-                    st.plotly_chart(fig, use_container_width=True)
+                    st.plotly_chart(fig, use_container_width=True, config=config)
 
     # clean up scratch columns so re-runs stay tidy
     for tmp_col in [f"_kmeans_{category}", "_profile_col", "_profile_col_db"]:
