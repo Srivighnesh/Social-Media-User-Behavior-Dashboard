@@ -1,0 +1,208 @@
+Here's a **Git Cheat Sheet** for your daily workflow.
+
+# 🚀 First Time (Clone the Repository)
+
+```bash
+git clone https://github.com/USERNAME/REPOSITORY.git
+cd REPOSITORY
+```
+
+---
+
+# 📥 Pull Latest Changes (Always do this before coding)
+
+```bash
+git pull origin main
+```
+
+Or (recommended to keep history clean):
+
+```bash
+git pull --rebase origin main
+```
+
+---
+
+# ✍️ Check What Changed
+
+```bash
+git status
+```
+
+See file differences:
+
+```bash
+git diff
+```
+
+---
+
+# ➕ Stage Changes
+
+Add everything:
+
+```bash
+git add .
+```
+
+Add only one file:
+
+```bash
+git add DashboardUI/streamlit_app.py
+```
+
+---
+
+# 💾 Commit Changes
+
+```bash
+git commit -m "Update Streamlit dashboard"
+```
+
+Example:
+
+```bash
+git commit -m "Improve cluster profiling UI"
+```
+
+---
+
+# 📤 Push to GitHub
+
+```bash
+git push origin main
+```
+
+---
+
+# 🔄 Daily Workflow
+
+```bash
+git pull --rebase origin main
+git add .
+git commit -m "Describe your changes"
+git push origin main
+```
+
+---
+
+# ❌ Undo Uncommitted Changes
+
+Discard changes in one file:
+
+```bash
+git restore DashboardUI/streamlit_app.py
+```
+
+Discard all changes:
+
+```bash
+git restore .
+```
+
+---
+
+# 🗑 Remove a File
+
+```bash
+git rm filename
+git commit -m "Remove file"
+git push origin main
+```
+
+---
+
+# 🌿 Create a New Branch
+
+```bash
+git checkout -b feature/dashboard-ui
+```
+
+Push it:
+
+```bash
+git push -u origin feature/dashboard-ui
+```
+
+---
+
+# 🔄 Switch Branches
+
+```bash
+git branch
+git checkout main
+```
+
+---
+
+# 🔍 View Commit History
+
+```bash
+git log --oneline
+```
+
+Graph view:
+
+```bash
+git log --oneline --graph --decorate --all
+```
+
+---
+
+# 🛠 If Push Is Rejected
+
+```bash
+git pull --rebase origin main
+git push origin main
+```
+
+---
+
+# ⚠ If You Get Merge Conflicts
+
+1. Fix the conflicting files.
+2. Stage the resolved files:
+
+```bash
+git add .
+```
+
+3. Continue the rebase:
+
+```bash
+git rebase --continue
+```
+
+4. Push:
+
+```bash
+git push origin main
+```
+
+---
+
+# 📌 Complete Workflow (Recommended)
+
+```bash
+# 1. Go to project
+cd Social-Media-User-Behavior-Dashboard
+
+# 2. Get latest code
+git pull --rebase origin main
+
+# 3. Make your changes
+
+# 4. Check status
+git status
+
+# 5. Stage changes
+git add .
+
+# 6. Commit
+git commit -m "Describe your changes"
+
+# 7. Push
+git push origin main
+```
+
+This sequence is the one you'll use most often for updating your GitHub repository.
