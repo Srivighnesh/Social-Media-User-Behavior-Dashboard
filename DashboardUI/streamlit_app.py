@@ -198,7 +198,7 @@ CATEGORIES = {
             1: "LinkedIn Professionals",
             2: "Pinterest Creators",
         },
-        bins = {
+        bins={
             'followers_count': {
                 'bins': [0, 1000, 5000, 10000, 20000, np.inf],
                 'labels': ['<1K', '1K-5K', '5K-10K', '10K-20K', '>20K']
@@ -420,10 +420,9 @@ CATEGORIES = {
                 '4-5 Platforms',
                 '>5 Platforms'
             ]
-             },
+          },
         },
     ),
-
 }
 CATEGORY_ICONS = {
     "User Behavior": "👤",
@@ -433,6 +432,7 @@ CATEGORY_ICONS = {
     "Demographic & Lifestyle": "🌍",
     "Mental Health & Usage Impact": "🧠",
     "Platform Usage Behavior": "📱",
+    "comparison": "⚖️",
 }
 # BINSUSERBEHAVIOUR = {
 #     'daily_usage_hours': {
@@ -480,12 +480,26 @@ def load_local_data() -> pd.DataFrame | None:
         return pd.read_csv(local_path)
     return None
 
+@st.cache_data(show_spinner=False)
+def split_datetime_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """Split account_join_date into separate date, year, month columns."""
+    if "account_join_date" in df.columns:
+        df["account_join_date"] = pd.to_datetime(df["account_join_date"], errors="coerce")
+        df["account_join_year"] = df["account_join_date"].dt.year
+        df["account_join_month"] = df["account_join_date"].dt.month
+        df["account_join_day"] = df["account_join_date"].dt.day
+    return df
 
 @st.cache_data(show_spinner=False)
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
-    df = df.dropna().copy()
-    df.reset_index(drop=True, inplace=True)
-    return df
+    split_datetime_columns(df)  # Split the account_join_date into separate columns
+    drop_cols = [
+    'user_id', # Removing it bcs doesn't describe user behaviour
+    'account_join_date', # we have already created separate date, year, month columns
+    ]
+    df_cleaned = df.drop(columns=[col for col in drop_cols if col in df.columns])
+    df_cleaned.reset_index(drop=True, inplace=True)
+    return df_cleaned
 
 
 def get_dataframe() -> pd.DataFrame | None:
@@ -896,6 +910,145 @@ def features_numerical(category_config, cluster_col, df):
     return figs
 
 
+
+def smart_compare_features(df: pd.DataFrame,feature1: str,feature2: str,numeric_features: list,categorical_features: list,bins_config: dict,cluster_col: str = "Cluster",):
+    """
+    Automatically selects the best Plotly chart for comparing two features
+    across clusters.
+
+    Returns
+    -------
+    plotly.graph_objects.Figure
+    """
+
+    if feature1 == feature2:
+        st.warning("Please choose two different features.")
+        return None
+
+    if feature1 not in df.columns or feature2 not in df.columns:
+        st.error("Selected features are not present in the dataframe.")
+        return None
+
+    is_num1 = feature1 in numeric_features
+    is_num2 = feature2 in numeric_features
+
+    is_cat1 = feature1 in categorical_features
+    is_cat2 = feature2 in categorical_features
+
+    # ----------------------------------------------------------
+    # Numerical vs Numerical
+    # ----------------------------------------------------------
+    if is_num1 and is_num2:
+
+        # Special case for binned features
+        for feature in [feature1, feature2]:
+
+            if feature in bins_config:
+
+                other_feature = feature2 if feature == feature1 else feature1
+
+                config = bins_config[feature]
+
+                temp_df = df.copy()
+
+                binned_col = feature + "_binned"
+
+                temp_df[binned_col] = pd.cut(
+                    temp_df[feature],
+                    bins=config["bins"],
+                    labels=config["labels"],
+                    include_lowest=True,
+                )
+
+                fig = px.box(
+                    temp_df,
+                    x=binned_col,
+                    y=other_feature,
+                    color=cluster_col,
+                    points="outliers",
+                    color_discrete_sequence=px.colors.qualitative.Set2,
+                    title=f"{other_feature.replace('_',' ').title()} by {feature.replace('_',' ').title()}",
+                )
+
+                fig.update_layout(
+                    template="plotly_white",
+                    legend_title="Cluster",
+                    xaxis_title=feature.replace("_", " ").title(),
+                    yaxis_title=other_feature.replace("_", " ").title(),
+                )
+
+                return fig
+        # Default numerical-numerical scatter plot logic if no specific binning applied   
+        fig = px.scatter(
+            df,
+            x=feature1,
+            y=feature2,
+            color=cluster_col,
+            hover_data=[cluster_col],
+            color_discrete_sequence=px.colors.qualitative.Set2,
+            title=f"{feature1.replace('_',' ').title()} vs {feature2.replace('_',' ').title()}",
+        )
+
+        fig.update_layout(
+            template="plotly_white",
+            legend_title="Cluster",
+        )
+
+        return fig
+
+    # ----------------------------------------------------------
+    # Numerical vs Categorical
+    # ----------------------------------------------------------
+    elif (is_num1 and is_cat2) or (is_cat1 and is_num2):
+
+        numerical = feature1 if is_num1 else feature2
+        categorical = feature2 if is_num1 else feature1
+
+        fig = px.box(
+            df,
+            x=categorical,
+            y=numerical,
+            color=cluster_col,
+            points="outliers",
+            color_discrete_sequence=px.colors.qualitative.Set2,
+            title=f"{numerical.replace('_',' ').title()} by {categorical.replace('_',' ').title()}",
+        )
+
+        fig.update_layout(
+            template="plotly_white",
+            legend_title="Cluster",
+        )
+
+        return fig
+
+    # ----------------------------------------------------------
+    # Categorical vs Categorical
+    # ----------------------------------------------------------
+    else:
+        temp = (
+            df.groupby([feature1, feature2])
+            .size()
+            .reset_index(name="Count")
+        )
+
+        fig = px.bar(
+            temp,
+            x=feature1,
+            y="Count",
+            color=feature2,
+            barmode="group",
+            text="Count",
+            color_discrete_sequence=px.colors.qualitative.Set3,
+        )
+
+        fig.update_traces(textposition="outside")
+
+        fig.update_layout(
+            template="plotly_white",
+            title=f"{feature1.replace('_',' ').title()} vs {feature2.replace('_',' ').title()}",
+        )
+
+        return fig
 # ----------------------------------------------------------------------------
 # Sidebar navigation
 # ----------------------------------------------------------------------------
@@ -905,8 +1058,10 @@ pages = ["🏠 Dataset Overview"] + [
     f"{CATEGORY_ICONS.get(category, '📂')} {category}"
     for category in CATEGORIES
 ]
-
 page = st.sidebar.radio("Go to", pages)
+
+# st.sidebar.markdown("---")
+
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("""
@@ -924,7 +1079,7 @@ st.sidebar.markdown("""
 # ----------------------------------------------------------------------------
 # Main
 # ----------------------------------------------------------------------------
-st.title("Social Media User Behavior — Unsupervised Learning Dashboard")
+st.title(":rainbow[Social Media User Behavior] — :grey[Unsupervised Learning Dashboard]")
 
 df_raw = get_dataframe()
 if df_raw is None:
@@ -937,23 +1092,35 @@ if missing:
 
 df = clean_data(df_raw)
 
+
 # ---- Dataset Overview page ----
 if page == "🏠 Dataset Overview":
     st.subheader("Dataset snapshot")
-    c1, c2, c3 = st.columns(3)
-    c1.metric("Rows", f"{df.shape[0]:,}")
-    c2.metric("Columns", f"{df.shape[1]:,}")
-    c3.metric("Categories available", len(CATEGORIES))
+    with st.container(border=True):
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Rows", f"{df.shape[0]:,}")
+        c2.metric("Columns", f"{df.shape[1]:,}")
+        c3.metric("Categories available", len(CATEGORIES))
 
     st.dataframe(df.head(20), use_container_width=True)
 
     with st.expander("Column summary (describe)"):
         st.dataframe(df.describe(include="all").transpose(), use_container_width=True)
 
-    st.markdown("### Categories in this dashboard")
+    st.markdown("## 📂 Categories in this Dashboard")
+
     for name, cfg in CATEGORIES.items():
-        st.markdown(f"**{name}** — {cfg['description']}")
-        st.caption(", ".join(cfg["features"]))
+        with st.container(border=True):
+            st.markdown(f"### {name}")
+            st.caption(cfg["description"])
+
+            tags = " ".join(
+                f":grey-badge[{f.replace('_', ' ').title()}]"
+                for f in cfg["features"]
+            )
+            st.write(tags)
+
+        st.write("")
 
     st.info("Pick a category from the sidebar to explore its clustering pipeline.")
 
@@ -968,12 +1135,12 @@ else:
 
     st.subheader(category)
     st.caption(cfg["description"])
-    st.write(f"**Features used:** {', '.join(features)}")
+    st.write(f"**Features used:**  :blue[{', '.join(f.replace('_', ' ').title() for f in features)}]")
 
     X_scaled, X_encoded = preprocess_features(df, features)
 
-    tab_overview, tab_kmeans, tab_dbscan, tab_compare, tab_patterns,tab_patterns_dbscan = st.tabs(
-        ["Feature Overview", "KMeans Clustering", "DBSCAN Clustering", "Algorithm Comparison", "Patterns Comparison by KMeans", "Patterns Comparison by DBSCAN"]
+    tab_overview, tab_kmeans, tab_dbscan, tab_compare, tab_patterns,tab_patterns_dbscan, comparisons = st.tabs(
+        ["Feature Overview", "KMeans Clustering", "DBSCAN Clustering", "Algorithm Comparison", "Patterns Comparison by KMeans", "Patterns Comparison by DBSCAN", "Comparisons"]
     )
 
     # --- Feature overview ---
@@ -1276,6 +1443,91 @@ else:
                 feature,fig = figures_numirical[i + 1]
                 with col2:
                     st.plotly_chart(fig, use_container_width=True, config=config)
+
+# --- Comparisons ---
+with comparisons:
+    st.subheader("Comparison of Feature Patterns by KMeans and DBSCAN")
+    st.caption("Select two features and compare their patterns using the chosen clustering algorithm.")
+
+    feature1 = st.selectbox(
+        "Select Feature 1",
+        options=features,
+        key=f"comparison_feature1_{category}"
+    )
+
+    feature2 = st.selectbox(
+        "Select Feature 2",
+        options=features,
+        key=f"comparison_feature2_{category}"
+    )
+
+    selected_algorithm = st.selectbox(
+        "Select Clustering Algorithm",
+        ["KMeans", "DBSCAN"],
+        key=f"comparison_algorithm_{category}"
+    )
+
+    if selected_algorithm == "KMeans":
+
+        k = st.slider(
+            "Number of Clusters (K)",
+            min_value=2,
+            max_value=10,
+            value=cfg["kmeans_k"],
+            key=f"comparison_k_{category}"
+        )
+
+        kmeans_model, labels = run_kmeans(X_scaled, k)
+        df_compare = df.copy()
+        df_compare["Cluster"] = pd.Series(labels).map(cfg["kmeans_names"])
+
+    else:
+
+        eps = st.slider(
+            "EPS",
+            min_value=0.1,
+            max_value=5.0,
+            value=float(cfg["dbscan_eps"]),
+            step=0.1,
+            key=f"comparison_eps_{category}"
+        )
+
+        min_samples = st.slider(
+            "Min Samples",
+            min_value=2,
+            max_value=20,
+            value=cfg["dbscan_min_samples"],
+            key=f"comparison_min_samples_{category}"
+        )
+
+        dbscan_model, labels = run_dbscan(
+            X_scaled,
+            eps,
+            min_samples
+        )
+        
+        _, dbscan_labels = run_dbscan(X_scaled, eps, min_samples)
+
+        df_compare = df.copy()
+        df_compare["Cluster"] = (
+            pd.Series(dbscan_labels)
+            .map(cfg["dbscan_names"])
+            .fillna("Other / Noise")
+        )
+        
+
+    fig = smart_compare_features(
+        df_compare,
+        feature1,
+        feature2,
+        cfg["numirical"],
+        cfg["category"],
+        cfg["bins"],
+        cluster_col="Cluster"
+    )
+
+    if fig is not None:
+        st.plotly_chart(fig, use_container_width=True)
 
     # clean up scratch columns so re-runs stay tidy
     for tmp_col in [f"_kmeans_{category}", "_profile_col", "_profile_col_db"]:
