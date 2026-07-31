@@ -1444,90 +1444,90 @@ else:
                 with col2:
                     st.plotly_chart(fig, use_container_width=True, config=config)
 
-# --- Comparisons ---
-with comparisons:
-    st.subheader("Comparison of Feature Patterns by KMeans and DBSCAN")
-    st.caption("Select two features and compare their patterns using the chosen clustering algorithm.")
-
-    feature1 = st.selectbox(
-        "Select Feature 1",
-        options=features,
-        key=f"comparison_feature1_{category}"
-    )
-
-    feature2 = st.selectbox(
-        "Select Feature 2",
-        options=features,
-        key=f"comparison_feature2_{category}"
-    )
-
-    selected_algorithm = st.selectbox(
-        "Select Clustering Algorithm",
-        ["KMeans", "DBSCAN"],
-        key=f"comparison_algorithm_{category}"
-    )
-
-    if selected_algorithm == "KMeans":
-
-        k = st.slider(
-            "Number of Clusters (K)",
-            min_value=2,
-            max_value=10,
-            value=cfg["kmeans_k"],
-            key=f"comparison_k_{category}"
+    # --- Comparisons ---
+    with comparisons:
+        st.subheader("Comparison of Feature Patterns by KMeans and DBSCAN")
+        st.caption("Select two features and compare their patterns using the chosen clustering algorithm.")
+    
+        feature1 = st.selectbox(
+            "Select Feature 1",
+            options=features,
+            key=f"comparison_feature1_{category}"
         )
-
-        kmeans_model, labels = run_kmeans(X_scaled, k)
-        df_compare = df.copy()
-        df_compare["Cluster"] = pd.Series(labels).map(cfg["kmeans_names"])
-
-    else:
-
-        eps = st.slider(
-            "EPS",
-            min_value=0.1,
-            max_value=5.0,
-            value=float(cfg["dbscan_eps"]),
-            step=0.1,
-            key=f"comparison_eps_{category}"
+    
+        feature2 = st.selectbox(
+            "Select Feature 2",
+            options=features,
+            key=f"comparison_feature2_{category}"
         )
-
-        min_samples = st.slider(
-            "Min Samples",
-            min_value=2,
-            max_value=20,
-            value=cfg["dbscan_min_samples"],
-            key=f"comparison_min_samples_{category}"
+    
+        selected_algorithm = st.selectbox(
+            "Select Clustering Algorithm",
+            ["KMeans", "DBSCAN"],
+            key=f"comparison_algorithm_{category}"
         )
-
-        dbscan_model, labels = run_dbscan(
-            X_scaled,
-            eps,
-            min_samples
+    
+        if selected_algorithm == "KMeans":
+    
+            k = st.slider(
+                "Number of Clusters (K)",
+                min_value=2,
+                max_value=10,
+                value=cfg["kmeans_k"],
+                key=f"comparison_k_{category}"
+            )
+    
+            kmeans_model, labels = run_kmeans(X_scaled, k)
+            df_compare = df.copy()
+            df_compare["Cluster"] = pd.Series(labels).map(cfg["kmeans_names"])
+    
+        else:
+    
+            eps = st.slider(
+                "EPS",
+                min_value=0.1,
+                max_value=5.0,
+                value=float(cfg["dbscan_eps"]),
+                step=0.1,
+                key=f"comparison_eps_{category}"
+            )
+    
+            min_samples = st.slider(
+                "Min Samples",
+                min_value=2,
+                max_value=20,
+                value=cfg["dbscan_min_samples"],
+                key=f"comparison_min_samples_{category}"
+            )
+    
+            dbscan_model, labels = run_dbscan(
+                X_scaled,
+                eps,
+                min_samples
+            )
+            
+            _, dbscan_labels = run_dbscan(X_scaled, eps, min_samples)
+    
+            df_compare = df.copy()
+            df_compare["Cluster"] = (
+                pd.Series(dbscan_labels)
+                .map(cfg["dbscan_names"])
+                .fillna("Other / Noise")
+            )
+            
+    
+        fig = smart_compare_features(
+            df_compare,
+            feature1,
+            feature2,
+            cfg["numirical"],
+            cfg["category"],
+            cfg["bins"],
+            cluster_col="Cluster"
         )
-        
-        _, dbscan_labels = run_dbscan(X_scaled, eps, min_samples)
-
-        df_compare = df.copy()
-        df_compare["Cluster"] = (
-            pd.Series(dbscan_labels)
-            .map(cfg["dbscan_names"])
-            .fillna("Other / Noise")
-        )
-        
-
-    fig = smart_compare_features(
-        df_compare,
-        feature1,
-        feature2,
-        cfg["numirical"],
-        cfg["category"],
-        cfg["bins"],
-        cluster_col="Cluster"
-    )
-
-    if fig is not None:
-        st.plotly_chart(fig, use_container_width=True)
+    
+        if fig is not None:
+            st.plotly_chart(fig, use_container_width=True)
 
     # clean up scratch columns so re-runs stay tidy
     for tmp_col in [f"_kmeans_{category}", "_profile_col", "_profile_col_db"]:
