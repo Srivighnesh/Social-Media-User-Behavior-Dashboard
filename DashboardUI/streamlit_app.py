@@ -881,7 +881,6 @@ def features_numerical(category_config, cluster_col, df):
 
         fig.update_layout(
             height=450,
-            title_x=0.5,
             xaxis_title=feature.replace("_", " ").title(),
             yaxis_title="Number of Users",
             legend_title="Cluster",
