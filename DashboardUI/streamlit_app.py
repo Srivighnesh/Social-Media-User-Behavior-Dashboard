@@ -806,7 +806,6 @@ def features_categorical(features, df, cluster_col):
         )
 
         fig.update_layout(
-            title_x=0.5,
             xaxis_title="Cluster",
             yaxis_title="Number of Users",
             legend_title=feature.replace("_", " ").title(),
