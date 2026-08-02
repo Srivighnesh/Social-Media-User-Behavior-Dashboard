@@ -761,7 +761,6 @@ def feature_distribution_figs(df: pd.DataFrame, features: list[str]):
 
         fig.update_layout(
             height=300,
-            title_x=0.5,
             template="plotly",
             paper_bgcolor="rgba(0,0,0,0)",
             plot_bgcolor="rgba(0,0,0,0)",
