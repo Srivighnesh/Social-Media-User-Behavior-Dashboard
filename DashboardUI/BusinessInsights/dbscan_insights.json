@@ -1,0 +1,584 @@
+{
+  "User Behavior": {
+    "business_focus": "Personalize recommendations, notification timing, and wellbeing controls according to usage intensity and session behaviour.",
+    "overview": "User Behaviour The DBSCAN analysis identified five user segments based on daily usage, session duration, scrolling speed, notification settings, social media breaks, and peak activity time.",
+    "clusters": [
+      {
+        "name": "Above-Average Daily Users",
+        "description": [
+          "Average usage is approximately 5.08 sessions per day.",
+          "62% have medium scrolling speed, the highest among all segments.",
+          "100% keep notifications turned off.",
+          "100% are most active after midnight.",
+          "84% take social media breaks regularly or occasionally."
+        ],
+        "business_insight": "These users are active late at night but cannot be reached through push notifications. Businesses should depend on personalized feeds, in-app recommendations, short videos, and organic content rather than notification campaigns."
+      },
+      {
+        "name": "Average Session Users",
+        "description": [
+          "Average usage is approximately 4.88 sessions per day.",
+          "47% have medium scrolling speed.",
+          "100% keep notifications turned off.",
+          "Peak activity is distributed across evening, night, afternoon, and morning.",
+          "Evening is the largest usage period at 37%."
+        ],
+        "business_insight": "This is a balanced audience with activity throughout the day. Since notifications are disabled, scheduled posts, email campaigns, personalized home feeds, and in-app promotions are more suitable."
+      },
+      {
+        "name": "Core Regular Users",
+        "description": [
+          "Average usage is approximately 5.03 sessions per day.",
+          "46% have medium scrolling speed.",
+          "43% prefer selected notifications, while 32% keep notifications always on.",
+          "Evening is the most popular usage period at 34%, followed by night at 27%.",
+          "Only 31% do not take social media breaks."
+        ],
+        "business_insight": "This is the most reliable and reachable segment. Users have regular activity patterns and are open to notifications. They are suitable for loyalty programs, personalized offers, product updates, subscription campaigns, and retention strategies."
+      },
+      {
+        "name": "Long-Session Explorers",
+        "description": [
+          "Average usage is approximately 3.08 sessions per day, the lowest among the segments.",
+          "61% use social media only once per day.",
+          "However, their session duration is extremely long.",
+          "39% are slow scrollers, the highest proportion among all groups.",
+          "43% prefer selected notifications, while 35% keep notifications off.",
+          "Evening is their main activity period at 35%."
+        ],
+        "business_insight": "These users visit less frequently but spend more time exploring content. They are suitable for long-form videos, detailed product information, educational material, livestreams, blogs, and storytelling campaigns."
+      },
+      {
+        "name": "Moderate Daily Engagers",
+        "description": [
+          "Average usage is approximately 5.07 sessions per day.",
+          "27% use social media seven or more times per day, the highest proportion among the segments.",
+          "40% are fast scrollers, the highest rate among all clusters.",
+          "77% keep notifications always on or selected.",
+          "100% are active after midnight.",
+          "38% regularly take social media breaks."
+        ],
+        "business_insight": "This is a highly engaged late-night group. Short videos, visually attractive posts, entertainment content, personalized recommendations, and immediate offers are most suitable. Notifications should be used carefully because of their late-night activity."
+      }
+    ],
+    "overall_findings": [
+      "Most segments average around five social media sessions per day.",
+      "Long-Session Explorers are different because they access social media less frequently but remain active for longer periods.",
+      "Core Regular Users and Moderate Daily Engagers are the most reachable through notifications.",
+      "Above-Average Daily Users and Average Session Users cannot be targeted effectively through push notifications because 100% have notifications off.",
+      "Medium scrolling speed is dominant across most segments.",
+      "Moderate Daily Engagers have the fastest content-consumption pattern.",
+      "Late-night activity is especially strong among Above-Average Daily Users and Moderate Daily Engagers.",
+      "DBSCAN reveals not only peak-time differences but also distinct notification and session-duration patterns."
+    ],
+    "business_recommendations": [
+      "Use personalized feeds for users who keep notifications off.",
+      "Target Core Regular Users with loyalty rewards, product updates, and retention campaigns.",
+      "Provide long-form content to Long-Session Explorers.",
+      "Use short and visually engaging content for Moderate Daily Engagers.",
+      "Schedule posts according to peak usage time, especially during evenings and late nights.",
+      "Use selected notifications instead of frequent generic alerts.",
+      "Apply quiet hours and notification limits for late-night users.",
+      "Conduct A/B testing to compare content formats and delivery times across segments.",
+      "Track click-through rate, session duration, conversions, retention, and notification opt-out rates by cluster."
+    ],
+    "data_quality": "The maximum average session duration is 594 minutes, and daily usage reaches 12 hours. These extreme values should be reviewed because they may represent genuine heavy users, inactive sessions, background app activity, or recording errors.",
+    "conclusion": "The DBSCAN segmentation identifies clear differences in session frequency, session duration, notification preferences, scrolling behaviour, and peak activity time. Businesses can use these insights to deliver more relevant content, improve campaign timing, increase engagement, and reduce unnecessary notifications."
+  },
+  "Engagement": {
+    "business_focus": "Match content formats to user interests and identify highly engaged users for new campaigns and content testing.",
+    "overview": "Engagement The DBSCAN model identified seven engagement segments based on posting, liking, commenting, sharing, advertisement clicks, preferred content, and scrolling mood. The strongest cluster differences come from content preference and engagement intensity.",
+    "clusters": [
+      {
+        "name": "Entertainment Fans",
+        "description": [
+          "Prefer entertainment content exclusively.",
+          "Average approximately 2.81 posts per week, 3.68 comments per day, and 2.06 shares per day.",
+          "Neutral is the most common scrolling mood at 19%."
+        ],
+        "business_insight": "Use trending entertainment, celebrity updates, challenges, humorous videos, and highly shareable campaigns. This group can support organic reach through entertaining content."
+      },
+      {
+        "name": "Exploratory Users",
+        "description": [
+          "Consume several content types, including entertainment, memes, photos, Reels, and Stories.",
+          "Record the highest engagement levels:",
+          "5.05 posts per week",
+          "5.25 comments per day",
+          "3.07 shares per day",
+          "38% feel relaxed while scrolling.",
+          "Show unusually high and widely distributed ad-click rates."
+        ],
+        "business_insight": "This is the most valuable segment for content discovery, experimentation, and advertising. Businesses can test new formats, product launches, cross-category recommendations, and interactive campaigns with these users."
+      },
+      {
+        "name": "Multi-Content Explorers",
+        "description": [
+          "Prefer educational content at 34%, memes at 33%, and Reels/Shorts at 32%.",
+          "Average approximately 2.91 posts per week, 4.04 comments per day, and 1.87 shares per day.",
+          "Happy and bored are the leading moods at 18% each."
+        ],
+        "business_insight": "Combine educational value with humour and short-form video. Examples include educational Reels, informative memes, quick tutorials, and “did you know?” content."
+      },
+      {
+        "name": "News Followers",
+        "description": [
+          "Prefer news content exclusively.",
+          "Average approximately 2.95 posts per week, 4.11 comments per day, and 1.90 shares per day.",
+          "Have one of the highest commenting rates.",
+          "Happy is the most common scrolling mood at 21%."
+        ],
+        "business_insight": "Use breaking updates, explainers, industry news, opinion polls, and discussion questions. Their strong commenting behaviour makes them suitable for community discussions and feedback campaigns."
+      },
+      {
+        "name": "Story Learners",
+        "description": [
+          "Prefer Stories exclusively.",
+          "Average approximately 2.94 posts per week, 4.01 comments per day, and 2.12 shares per day.",
+          "Inspired and stressed are the leading moods at 18% each."
+        ],
+        "business_insight": "Use short educational Stories, polls, quizzes, tutorials, behind-the-scenes content, and interactive question stickers. Content should be brief, useful, and easy to consume."
+      },
+      {
+        "name": "Video Enthusiasts",
+        "description": [
+          "Prefer video content exclusively.",
+          "Average approximately 2.87 posts per week, 3.88 comments per day, and 2.02 shares per day.",
+          "Bored is the most common scrolling mood at 20%."
+        ],
+        "business_insight": "Use engaging videos with strong openings to capture attention quickly. Product demonstrations, tutorials, reviews, entertainment clips, and storytelling videos are appropriate for this segment."
+      },
+      {
+        "name": "Visual Content Users",
+        "description": [
+          "Prefer photo content exclusively.",
+          "Average approximately 3.07 posts per week, 3.86 comments per day, and 2.12 shares per day.",
+          "Stressed is the most common mood at 20%, followed by relaxed at 19%."
+        ],
+        "business_insight": "Use high-quality photos, visual storytelling, product images, user-generated content, and inspirational posts. Positive and calming visual content may be particularly effective for this group."
+      }
+    ],
+    "overall_findings": [
+      "Most segments publish approximately three posts per week.",
+      "Exploratory Users are the most active segment across posting, commenting, and sharing.",
+      "News Followers have strong commenting behaviour, making them valuable for discussions.",
+      "Story Learners and Visual Content Users show strong sharing activity.",
+      "Entertainment Fans and Video Enthusiasts can support organic reach through shareable media.",
+      "Multi-Content Explorers respond to a combination of information, humour, and short-form video.",
+      "Content preference is a stronger cluster differentiator than scrolling mood.",
+      "DBSCAN identifies a small, highly active Exploratory Users segment that may represent valuable users or behavioural outliers."
+    ],
+    "business_recommendations": [
+      "Personalize each user’s feed according to the preferred content type.",
+      "Prioritize Exploratory Users for product launches, advertising tests, and new content formats.",
+      "Use interactive news posts and polls to increase comments among News Followers.",
+      "Deliver educational Stories and quizzes to Story Learners.",
+      "Create entertaining, shareable videos for Entertainment Fans and Video Enthusiasts.",
+      "Combine educational content, memes, and Reels for Multi-Content Explorers.",
+      "Encourage Visual Content Users to create and share branded photos.",
+      "Use mood-sensitive recommendations, particularly positive content for bored or stressed users.",
+      "Track ad-click rate, conversion rate, comments, shares, and content completion by segment."
+    ],
+    "data_quality": "s • The cluster totals vary between approximately 97 and 101 records, which should be checked before final reporting. • Exploratory Users show unusual distributions in posting, likes, shares, and ad clicks. This may be a valid niche segment or a group of outliers detected by DBSCAN. • Since the ad-click-rate table is truncated, average click rates cannot be calculated accurately from the displayed results. • DBSCAN parameters such as eps and min_samples should be documented and validated.",
+    "conclusion": "The DBSCAN analysis shows that preferred content type is the main factor separating engagement groups. The Exploratory Users segment offers the highest engagement and advertising potential, while the remaining segments require content-specific strategies. Applying personalized content recommendations can improve engagement, organic sharing, ad performance, and campaign relevance."
+  },
+  "Social Influence": {
+    "business_focus": "Identify potential influencers, platform-specific creators, and high-reach accounts for targeted partnerships.",
+    "overview": "Social Influence The DBSCAN model identified four social-influence segments based on follower count, following count, posting frequency, influencer status, and primary platform. The analysis separates mainstream users from platform-specific creators and unusually influential accounts.",
+    "clusters": [
+      {
+        "name": "General Social Media Users",
+        "description": [
+          "Represent users across Instagram, TikTok, Twitter/X, Facebook, YouTube, and Snapchat.",
+          "Instagram is the largest platform at 23%, followed by TikTok at 22%.",
+          "Publish approximately 2.96 posts per week.",
+          "Three posts per week is the most common frequency.",
+          "7% are classified as influencers.",
+          "18% publish five or more times per week."
+        ],
+        "business_insight": "This broad segment is suitable for large-scale, multi-platform campaigns. Businesses should use short videos, visual posts, product updates, and general awareness content while adapting the format for each platform."
+      },
+      {
+        "name": "High-Influence Outliers",
+        "description": [
+          "Consist mainly of Snapchat users at 71% and TikTok users at 29%.",
+          "Include users with exceptionally high follower and following counts.",
+          "The largest follower value reaches more than 2.1 million.",
+          "Publish approximately 2.57 posts per week, the lowest average among the segments.",
+          "14% are classified as influencers, the highest percentage.",
+          "Only 14.1% post five or more times per week."
+        ],
+        "business_insight": "This is a small but potentially high-value segment for influencer marketing. Despite posting less frequently, these users may offer significant reach. Businesses should evaluate their engagement quality, audience relevance, and authenticity before entering partnerships."
+      },
+      {
+        "name": "LinkedIn Professionals",
+        "description": [
+          "Use LinkedIn as their primary platform.",
+          "Publish approximately 2.91 posts per week.",
+          "Two posts per week is the most common posting frequency.",
+          "10% are identified as influencers.",
+          "19% publish five or more posts per week."
+        ],
+        "business_insight": "This segment is appropriate for B2B marketing, professional services, recruitment, industry research, webinars, and thought-leadership campaigns. LinkedIn influencers can help improve professional credibility and lead generation."
+      },
+      {
+        "name": "Pinterest Creators",
+        "description": [
+          "Use Pinterest as their primary platform.",
+          "Publish approximately 3.01 posts per week, the highest average among the four segments.",
+          "Two posts per week is the most common frequency.",
+          "10% are classified as influencers.",
+          "20% publish five or more times per week, the highest proportion."
+        ],
+        "business_insight": "These users are valuable for visual discovery and long-term content exposure. Suitable campaigns include lifestyle inspiration, fashion, home décor, food, travel, crafts, and visual product collections."
+      }
+    ],
+    "overall_findings": [
+      "Most users publish approximately three posts per week.",
+      "Pinterest Creators have the highest average posting frequency.",
+      "High-Influence Outliers post less frequently but have the greatest potential reach.",
+      "Influencer presence ranges from 7% to 14% across the clusters.",
+      "LinkedIn Professionals and Pinterest Creators each have a 10% influencer rate.",
+      "DBSCAN successfully identifies high-influence accounts as a distinct outlier segment.",
+      "Primary platform and follower scale are stronger differentiators than posting frequency.",
+      "A large follower count does not automatically indicate frequent posting or strong engagement."
+    ],
+    "business_recommendations": [
+      "Use multi-platform awareness campaigns for General Social Media Users.",
+      "Prioritize High-Influence Outliers for premium influencer partnerships.",
+      "Use LinkedIn Professionals for B2B campaigns and thought leadership.",
+      "Use Pinterest Creators for visual discovery and product-inspiration campaigns.",
+      "Evaluate influencers using engagement rate, audience quality, relevance, and authenticity, not follower count alone.",
+      "Create different content formats for each platform rather than reusing identical posts.",
+      "Track reach, impressions, engagement, conversions, follower growth, and campaign cost by cluster.",
+      "Monitor high-influence accounts for fake followers or unusually high following counts."
+    ],
+    "data_quality": "s • The maximum follower count is 2,110,323, while the following count reaches 10,000. • These extreme values may represent genuine high-influence users, automated accounts, or data anomalies. • Follower and following counts should be log-transformed before clustering because of their highly skewed distributions. • The High-Influence Outliers table totals approximately 99 due to rounded percentages. • DBSCAN parameters such as eps and min_samples should be documented and validated.",
+    "conclusion": "The DBSCAN analysis identifies four meaningful social-influence groups. General Social Media Users are useful for broad marketing reach, while LinkedIn Professionals and Pinterest Creators support platform-specific campaigns. High-Influence Outliers offer the greatest reach but require careful evaluation before influencer partnerships. The main business opportunity is to combine platform-specific targeting with influence-level analysis to select the right users, content formats, and campaign strategies."
+  },
+  "Spending & Marketing": {
+    "business_focus": "Deliver purpose-based advertising, retarget occasional buyers, and provide premium offers to high-value customers.",
+    "overview": "Spending and Marketing The DBSCAN model identified seven customer segments based on ad-click behaviour, social-media purchases, monthly spending, and primary purpose. The clearest differences are based on why users access social media and the identification of a small group of unusually high spenders.",
+    "clusters": [
+      {
+        "name": "Business Users",
+        "description": [
+          "Use social media mainly for business and marketing.",
+          "26% regularly purchase through social media.",
+          "34% purchase occasionally.",
+          "Overall purchase potential is 60%.",
+          "40% have not purchased through social media."
+        ],
+        "business_insight": "Promote business tools, productivity software, professional subscriptions, marketing services, and premium plans. Use case studies, demonstrations, free trials, and return-on-investment messaging."
+      },
+      {
+        "name": "Entertainment Users",
+        "description": [
+          "Use social media mainly for entertainment.",
+          "Approximately 23% purchase regularly.",
+          "Approximately 39% purchase occasionally.",
+          "Combined purchase potential is approximately 61%."
+        ],
+        "business_insight": "Use entertaining advertisements, influencer promotions, short videos, limited-time offers, gaming products, streaming services, and impulse-purchase campaigns."
+      },
+      {
+        "name": "Learners",
+        "description": [
+          "Use social media mainly for learning.",
+          "Approximately 25% purchase regularly.",
+          "34% purchase occasionally.",
+          "Combined purchase potential is approximately 60%.",
+          "Around 40% have not purchased through social media."
+        ],
+        "business_insight": "Promote online courses, educational tools, books, certifications, and skill-development products. Tutorials, demonstrations, free lessons, and student discounts may improve conversion."
+      },
+      {
+        "name": "Network Builders",
+        "description": [
+          "Use social media mainly for professional and personal networking.",
+          "24% purchase regularly.",
+          "38% purchase occasionally.",
+          "Combined purchase potential is 62%, the highest among the regular-purpose segments."
+        ],
+        "business_insight": "This segment offers strong conversion potential. Promote professional memberships, networking events, career services, webinars, and subscription products. Retarget occasional purchasers with personalized offers."
+      },
+      {
+        "name": "News Followers",
+        "description": [
+          "Use social media mainly for news and updates.",
+          "22% regularly purchase, the lowest rate among the main segments.",
+          "37% purchase occasionally.",
+          "Overall purchase potential is 59%.",
+          "41% have not purchased through social media."
+        ],
+        "business_insight": "Use trustworthy, informative, and fact-based advertisements. Suitable offers include news subscriptions, financial services, technology products, and professional publications. Avoid overly aggressive promotional messaging."
+      },
+      {
+        "name": "Selective High Spenders",
+        "description": [
+          "Consist of exceptionally high-spending users.",
+          "Monthly spending appears concentrated around $254.77 and $264.54.",
+          "50% regularly purchase and 50% purchase sometimes.",
+          "No users are shown in the non-purchasing category.",
+          "Their purposes are evenly divided between entertainment and news."
+        ],
+        "business_insight": "This is the most commercially valuable segment. Businesses should offer premium products, exclusive access, personalized recommendations, VIP rewards, and high-value bundles. However, this cluster appears to contain only two actual users, with each user represented as 50%. Therefore, these results should be interpreted carefully and not generalized to the wider customer base."
+      },
+      {
+        "name": "Social Connectors",
+        "description": [
+          "Use social media mainly for socializing.",
+          "28% regularly purchase, the highest rate among the main, non-outlier segments.",
+          "33% purchase occasionally.",
+          "Combined purchase potential is 61%."
+        ],
+        "business_insight": "Social proof is likely to influence this group. Use referral programs, customer reviews, group discounts, creator recommendations, community campaigns, and shareable promotional content."
+      }
+    ],
+    "overall_findings": [
+      "Purchase potential across the main segments ranges from approximately 59% to 62%.",
+      "Social Connectors have the highest regular purchase rate among the main segments at 28%.",
+      "Network Builders have the highest combined regular and occasional purchase potential at 62%.",
+      "News Followers have the lowest regular purchase rate at 22%.",
+      "Approximately 38% to 41% of users in the main segments have not purchased through social media.",
+      "Selective High Spenders are clearly separated by DBSCAN because of their extreme spending behaviour.",
+      "Primary purpose is the strongest visible difference among the major clusters.",
+      "The business opportunity is to convert users who purchase “sometimes” into regular customers."
+    ],
+    "business_recommendations": [
+      "Prioritize Selective High Spenders for premium and personalized offers.",
+      "Retarget Network Builders because of their high occasional-purchase rate.",
+      "Use referral programs and social proof for Social Connectors.",
+      "Promote courses and educational products to Learners.",
+      "Use informative advertising for Business Users and News Followers.",
+      "Deliver entertainment-led promotions to Entertainment Users.",
+      "Personalize advertisements according to social-media purpose.",
+      "Track ad click-through rate, conversion rate, average order value, monthly spending, and customer lifetime value by cluster."
+    ],
+    "data_quality": "• The ad-click-rate table is incomplete, so average click rates cannot be compared reliably. • The monthly-spending table is also truncated, preventing full calculation of average and median spending for most clusters. • The Selective High Spenders cluster appears to include only two users, making it a niche or outlier segment. • DBSCAN settings such as eps and min_samples should be reported. • Monthly spending and ad-click rates should be standardized before clustering. • Extreme spending values should be inspected to confirm that they are genuine transactions.",
+    "conclusion": "The DBSCAN model successfully separates customers by their social-media purpose and identifies a small group of Selective High Spenders. The strongest business strategy is to target each group with purpose-specific advertising while giving premium and personalized attention to high-value customers. Occasional purchasers should be prioritized for retargeting because they represent the largest immediate opportunity for conversion growth."
+  },
+  "Demographic & Lifestyle": {
+    "business_focus": "Create mobile-first, Smart TV, cross-device, professional, and localized experiences while respecting user privacy.",
+    "overview": "Demographic and Lifestyle The DBSCAN model identified five lifestyle and demographic segments. For responsible business use, targeting should focus on device preference, profession, content needs, country, and privacy settings, rather than gender identity.",
+    "clusters": [
+      {
+        "name": "Career-Focused Users",
+        "description": [
+          "100% prefer Smart TVs.",
+          "India has the highest representation at 25%, followed by the USA at 20%.",
+          "Designers and researchers are the largest professional groups at 16% each.",
+          "47% use Friends Only privacy settings."
+        ],
+        "business_insight": "This segment is suitable for professional documentaries, educational streaming, industry content, webinars, and Smart TV advertising. Content should be optimized for large screens and longer viewing sessions."
+      },
+      {
+        "name": "Diverse Lifestyle Users",
+        "description": [
+          "Use multiple devices:",
+          "Smartphones: 31%",
+          "Smart TVs: 28%",
+          "Tablets: 28%",
+          "Laptops: 14%",
+          "The UAE has the highest representation at 24%.",
+          "Teachers are the largest professional group at 21%, followed by entrepreneurs at 17%.",
+          "Privacy preferences are relatively balanced."
+        ],
+        "business_insight": "This segment requires a cross-device strategy. Businesses should provide responsive and consistent content across smartphones, tablets, laptops, and Smart TVs."
+      },
+      {
+        "name": "Independent Identity Users",
+        "description": [
+          "74% prefer smartphones, followed by laptops at 21%.",
+          "Pakistan has the highest representation at 26%, followed by India at 21%.",
+          "Marketers represent 19%, while entrepreneurs represent 17%.",
+          "47% use Friends Only privacy settings."
+        ],
+        "business_insight": "This is a mobile-first segment with strong professional and entrepreneurial representation. Suitable offerings include business applications, marketing tools, entrepreneurship content, short professional videos, and mobile learning."
+      },
+      {
+        "name": "Mainstream Lifestyle Users",
+        "description": [
+          "68% prefer smartphones, followed by laptops at 18%.",
+          "Pakistan is the largest country group at 19%, followed by India and the USA at 16% each.",
+          "Professions are distributed evenly, indicating a broad mainstream audience.",
+          "37% maintain public profiles."
+        ],
+        "business_insight": "This segment is suitable for large-scale mobile campaigns, general product promotions, entertainment, everyday services, and broad brand-awareness initiatives."
+      },
+      {
+        "name": "Privacy-Oriented Users",
+        "description": [
+          "71% prefer smartphones, followed by laptops at 19%.",
+          "India has the highest representation at 29%, followed by the USA at 23%.",
+          "Doctors are the largest professional group at 26%.",
+          "45% use Friends Only settings, 42% use public profiles, and 13% use private profiles."
+        ],
+        "business_insight": "This segment is suitable for professional, healthcare-related, informational, and mobile-first campaigns. Marketing should use clear consent, transparent data practices, and user-controlled personalization. Interpretation note: The cluster name is retained for consistency. However, its observed profile settings do not show a high private-account rate, so the name should be interpreted as a cluster label rather than a complete description of all users."
+      }
+    ],
+    "overall_findings": [
+      "Smartphone usage dominates Independent Identity Users, Mainstream Lifestyle Users, and Privacy-Oriented Users.",
+      "Career-Focused Users form a distinct Smart TV segment.",
+      "Diverse Lifestyle Users demonstrate the strongest cross-device behaviour.",
+      "Friends Only is the most common privacy setting in most clusters.",
+      "Device preference and profession provide more actionable insights than gender.",
+      "Country distribution can support localized content and campaign planning.",
+      "Device-specific content design is the main commercial opportunity."
+    ],
+    "business_recommendations": [
+      "Use mobile-first campaigns for smartphone-dominant segments.",
+      "Develop large-screen video content for Career-Focused Users.",
+      "Provide seamless cross-device experiences for Diverse Lifestyle Users.",
+      "Personalize professional content based on occupation and business needs.",
+      "Localize campaigns according to country, language, pricing, and device accessibility.",
+      "Respect privacy settings and obtain clear consent for personalization.",
+      "Avoid using gender identity for pricing, eligibility, or exclusion.",
+      "Measure engagement, conversion rate, device performance, and campaign reach by cluster."
+    ],
+    "data_quality": "The country table is truncated, so the full distribution cannot be calculated. The profession table is also truncated, preventing complete analysis of professional representation. DBSCAN parameters such as eps and min_samples should be documented and validated.",
+    "conclusion": "DBSCAN reveals meaningful differences in device preference, profession, country distribution, and privacy behaviour. The strongest business strategy is to create device-optimized and profession-relevant experiences while applying privacy-conscious personalization."
+  },
+  "Mental Health & Usage Impact": {
+    "business_focus": "Provide optional screen-time reports, bedtime reminders, quiet mode, and break alerts without exploiting wellbeing vulnerabilities.",
+    "overview": "Mental Health and Digital Wellbeing These clusters must not be treated as medical diagnoses. The DBSCAN model identified two mental-health and digital-wellbeing segments based on sleep disruption, screen-time concern, self-reported mental-health scores, and daily usage hours.",
+    "clusters": [
+      {
+        "name": "High Impact Users",
+        "description": [
+          "100% report severe sleep disruption.",
+          "34% are concerned about their screen time.",
+          "28% are somewhat concerned.",
+          "38% report no screen-time concern despite experiencing severe sleep disruption.",
+          "Daily usage varies across the group, suggesting that usage duration alone may not explain the reported impact."
+        ],
+        "business_insight": "This segment should be supported through optional bedtime reminders, quiet mode, reduced nighttime notifications, break alerts, session limits, and autoplay controls. Engagement campaigns should not encourage excessive or late-night usage."
+      },
+      {
+        "name": "Moderate Impact Users",
+        "description": [
+          "40% report mild sleep disruption.",
+          "27% report moderate sleep disruption.",
+          "33% report no sleep disruption.",
+          "42% are concerned about screen time.",
+          "23% are somewhat concerned, while 35% report no concern.",
+          "This segment shows mixed wellbeing outcomes and requires flexible support rather than a single intervention."
+        ],
+        "business_insight": "Offer personalized screen-time dashboards, weekly usage summaries, scheduled breaks, notification controls, and optional digital-wellbeing goals. Users should be able to choose the level of support they need."
+      }
+    ],
+    "overall_findings": [
+      "DBSCAN identified one clearly separated group with severe sleep disruption.",
+      "Screen-time concern does not always match sleep impact.",
+      "Some High Impact Users report no concern despite severe disruption.",
+      "Moderate Impact Users have the highest direct screen-time concern at 42%.",
+      "Daily usage hours alone are not sufficient to explain wellbeing differences.",
+      "Usage time, session duration, nighttime activity, and notification frequency should also be examined.",
+      "The self-reported mental-health score table is incomplete, so average scores cannot be compared reliably."
+    ],
+    "business_recommendations": [
+      "Provide optional screen-time and weekly usage reports.",
+      "Introduce bedtime mode, quiet hours, and break reminders.",
+      "Reduce late-night notifications for users who activate wellbeing settings.",
+      "Allow users to control autoplay and recommendation frequency.",
+      "Avoid campaigns designed to increase excessive usage among High Impact Users.",
+      "Protect mental-health information through consent and restricted access.",
+      "Use aggregated data rather than individual-level wellbeing targeting.",
+      "Track nighttime usage, notification reduction, feature adoption, and user satisfaction.",
+      "Validate the DBSCAN parameters, including eps, min_samples, cluster sizes, and noise points.",
+      "Do not interpret these clusters as medical or clinical categories."
+    ],
+    "data_quality": "The self-reported mental-health score table is incomplete, so average scores cannot be compared reliably. The daily usage table is truncated, preventing full calculation of average and median usage for most clusters. DBSCAN parameters such as eps and min_samples should be documented and validated.",
+    "conclusion": "The DBSCAN analysis identifies High Impact Users as a distinct group reporting severe sleep disruption, while Moderate Impact Users demonstrate mixed levels of sleep impact and screen-time concern. The main business opportunity is to improve user trust and long-term platform sustainability through responsible, optional, and privacy-conscious digital-wellbeing features."
+  },
+  "Platform Usage Behavior": {
+    "business_focus": "Develop platform-specific content and schedule campaigns according to each cluster’s preferred content and peak activity period.",
+    "overview": "Platform Usage Behaviour The DBSCAN model identified six platform-usage segments based on primary platform, peak usage time, preferred content, and privacy settings. The main differences are driven by platform preference, content format, and usage time.",
+    "clusters": [
+      {
+        "name": "Diverse Platform Users",
+        "description": [
+          "Primarily use Pinterest at 65%, LinkedIn at 24%, and Snapchat at 12%.",
+          "53% are most active in the morning, while 41% are active late at night.",
+          "Videos are the leading content preference at 29%, followed by entertainment at 24%.",
+          "53% use Friends Only privacy settings."
+        ],
+        "business_insight": "This segment responds to varied content formats. Businesses should combine video, entertainment, and educational content, with campaigns scheduled mainly in the morning and late at night."
+      },
+      {
+        "name": "LinkedIn Professionals",
+        "description": [
+          "100% use LinkedIn as their primary platform.",
+          "Evening is the main usage period at 31%, followed by night at 29%.",
+          "Educational content is the leading preference at 20%.",
+          "Privacy preferences are almost evenly divided between Public at 41% and Friends Only at 40%."
+        ],
+        "business_insight": "This segment is suitable for B2B marketing, professional development, industry insights, recruitment, webinars, and thought-leadership content. Evening campaigns may generate stronger engagement."
+      },
+      {
+        "name": "Multi-Platform Users",
+        "description": [
+          "Use Instagram at 25%, TikTok at 24%, Twitter/X at 19%, Facebook at 16%, and YouTube at 15%.",
+          "Evening is the most active period at 31%.",
+          "Content preferences are evenly distributed across almost all formats.",
+          "40% use Friends Only settings, while 37% have public profiles."
+        ],
+        "business_insight": "This segment requires a broad, cross-platform strategy. Businesses should adapt the same campaign into platform-specific formats such as videos, short posts, images, Stories, and educational content."
+      },
+      {
+        "name": "Pinterest Users",
+        "description": [
+          "100% use Pinterest as their primary platform.",
+          "Evening is the main usage period at 38%, followed by night at 32%.",
+          "Educational content is the leading preference at 19%, followed by photos at 16%.",
+          "41% maintain public profiles, while 32% use Friends Only settings."
+        ],
+        "business_insight": "This segment is suitable for visual discovery, educational graphics, product inspiration, fashion, food, travel, home décor, and how-to content. Evening is the best period for campaign delivery."
+      },
+      {
+        "name": "Snapchat Users",
+        "description": [
+          "100% use Snapchat as their primary platform.",
+          "Night is the main usage period at 27%, closely followed by evening at 26%.",
+          "Reels/Shorts are the leading preference at 16%, followed by news at 15% and photos at 14%.",
+          "43% use Friends Only privacy settings."
+        ],
+        "business_insight": "Use short, interactive, and visually engaging content. Stories, creator campaigns, filters, limited-time promotions, and behind-the-scenes content are suitable for this group."
+      },
+      {
+        "name": "Video Lovers",
+        "description": [
+          "The segment is shown as 100% Pinterest users.",
+          "92% prefer video content, while 8% prefer educational content.",
+          "Late night is the main usage period at 42%, followed by evening at 33%.",
+          "67% use Friends Only settings, the highest proportion among all clusters."
+        ],
+        "business_insight": "This segment should receive video-led campaigns, tutorials, demonstrations, storytelling, and educational videos. Content should be optimized for evening and late-night discovery while respecting privacy preferences. Interpretation note: Although this segment is named Video Lovers, its primary platform is shown as Pinterest rather than a dedicated video platform. The name is supported by its 92% video preference, but the underlying records should be checked to confirm the platform assignment."
+      }
+    ],
+    "overall_findings": [
+      "DBSCAN identifies both platform-specific and multi-platform behaviour.",
+      "Evening is the leading usage period for LinkedIn Professionals, Multi-Platform Users, and Pinterest Users.",
+      "Diverse Platform Users are primarily active in the morning.",
+      "Video Lovers show the strongest late-night activity.",
+      "Multi-Platform Users have the most balanced content preferences.",
+      "Friends Only is the most common privacy setting in most clusters.",
+      "Pinterest appears in three different behavioural contexts: Diverse Platform Users, Pinterest Users, and Video Lovers.",
+      "Platform preference alone is insufficient. Content type and peak usage time should also guide campaign design."
+    ],
+    "business_recommendations": [
+      "Use professional and educational content for LinkedIn Professionals.",
+      "Apply cross-platform campaigns for Multi-Platform Users.",
+      "Deliver inspirational and educational visual content to Pinterest Users.",
+      "Use Stories and short-form content for Snapchat Users.",
+      "Prioritize video content for Video Lovers.",
+      "Schedule campaigns according to each segment’s peak activity period.",
+      "Adapt content format to each platform instead of posting identical material.",
+      "Respect privacy settings and obtain consent for personalized campaigns.",
+      "Measure reach, engagement, video completion, click-through rate, and conversions by cluster.",
+      "Validate small or unusual DBSCAN clusters before using them for major business decisions."
+    ],
+    "data_quality": "The DBSCAN model identifies six clusters, but the Video Lovers segment is shown as 100% Pinterest users. This may be a data error or an unusual behavioural pattern. The platform assignment for Video Lovers should be verified before using this cluster for business decisions. The DBSCAN parameters such as eps and min_samples should be documented and validated.",
+    "conclusion": "The DBSCAN analysis identifies meaningful differences in platform choice, preferred content, peak activity time, and privacy behaviour. Businesses can improve campaign performance by using platform-specific content and scheduling it during each cluster’s most active period."
+  }
+}

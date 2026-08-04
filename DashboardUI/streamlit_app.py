@@ -11,7 +11,7 @@ reusable functions instead of duplicating the pipeline for every category.
 import glob
 import os
 from pathlib import Path
-
+from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -22,6 +22,10 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import davies_bouldin_score, silhouette_score
 from sklearn.preprocessing import StandardScaler
 
+from BusinessInsights.loader import (
+    KMEANS_INSIGHTS,
+    DBSCAN_INSIGHTS
+)
 # ----------------------------------------------------------------------------
 # Page config
 # ----------------------------------------------------------------------------
@@ -434,22 +438,7 @@ CATEGORY_ICONS = {
     "Platform Usage Behavior": "📱",
     "comparison": "⚖️",
 }
-# BINSUSERBEHAVIOUR = {
-#     'daily_usage_hours': {
-#         'bins': [0, 1, 3, 6, 24],
-#         'labels': ['<1 hour', '1-3 hours', '3-6 hours', '>6 hours']
-#     },
 
-#     'sessions_per_day': {
-#         'bins': [0, 3, 6, 10, 50],
-#         'labels': ['<3', '3-6', '6-10', '10-50']
-#     },
-
-#     'avg_session_duration_min': {
-#         'bins': [0, 20, 45, 75, 300],
-#         'labels': ['<20 mins', '20-45 mins', '45-75 mins', '>75 mins']
-#     }
-# }
 REQUIRED_COLUMNS = sorted({f for cfg in CATEGORIES.values() for f in cfg["features"]})
 
 # ----------------------------------------------------------------------------
@@ -1046,6 +1035,136 @@ def smart_compare_features(df: pd.DataFrame,feature1: str,feature2: str,numeric_
         )
 
         return fig
+def show_business_insights(insights, category, algorithm="K-Means", df: pd.DataFrame = None):
+
+    
+    if category not in insights:
+        st.warning(f"No business insights available for '{category}'.")
+        return
+
+    data = insights[category]
+
+    # ==========================================================
+    # Header
+    # ==========================================================
+
+    st.markdown(f"## 💼 {algorithm} Business Insights")
+    st.caption(f"📂 {category}")
+
+    # ==========================================================
+    # Summary Metrics
+    # ==========================================================
+
+    m1, m2, m3 = st.columns(3)
+
+    m1.metric("👥 Clusters", len(data.get("clusters", [])))
+    m2.metric("📈 Findings", len(data.get("overall_findings", [])))
+    m3.metric("💡 Recommendations", len(data.get("business_recommendations", [])))
+
+    st.markdown("---")
+
+    # ==========================================================
+    # Overview & Business Focus
+    # ==========================================================
+
+    left, right = st.columns(2)
+
+    with left:
+        with st.container(border=True):
+            section_title("Overview", "OverView")
+            st.write(data.get("overview", ""))
+
+    with right:
+        with st.container(border=True):
+            section_title("Business Focus", "BusinessFocus")
+            st.write(data.get("business_focus", ""))
+
+    st.markdown("---")
+
+    # ==========================================================
+    # Cluster Profiles
+    # ==========================================================
+
+    section_title("Cluster Profiles", "clustering")
+
+    for cluster in data.get("clusters", []):
+
+        with st.expander(f"📍 {cluster['name']}", expanded=False):
+
+            for point in cluster.get("description", []):
+                st.markdown(f"- {point}")
+
+            st.markdown("**Business Insight**")
+            st.write(cluster.get("business_insight", ""))
+
+    st.markdown("---")
+
+    # ==========================================================
+    # Findings & Recommendations
+    # ==========================================================
+
+    left, right = st.columns(2)
+
+    with left:
+        with st.container(border=True):
+
+            section_title("Key Findings", "findings")
+
+            for finding in data.get("overall_findings", []):
+                st.markdown(f"• {finding}")
+
+    with right:
+        with st.container(border=True):
+
+            section_title("Business Recommendations", "BusinessRecommendations")
+            for rec in data.get("business_recommendations", []):
+                st.markdown(f"✅ {rec}")
+
+    # ==========================================================
+    # Data Quality
+    # ==========================================================
+
+    dq = data.get("data_quality", " ")
+
+    if dq:
+        st.markdown("---")
+
+        with st.container(border=True):
+            section_title("Data Quality", "DataQualityConsiderations")
+            st.markdown(dq)
+
+    # ==========================================================
+    # Conclusion
+    # ==========================================================
+
+    st.markdown("---")
+
+    with st.container(border=True):
+
+        section_title("Conclusion", "conclusion")
+
+        st.write(data.get("conclusion", ""))
+    
+
+from pathlib import Path
+
+ICON_PATH = Path("ICONS")
+from pathlib import Path
+import base64
+
+def section_title(title, icon):
+    with open(ICON_PATH / f"{icon}.png", "rb") as f:
+        encoded = base64.b64encode(f.read()).decode()
+
+    st.markdown(
+        f"""
+        <div style="display:flex;align-items:center;gap:8px;">
+            <img src="data:image/png;base64,{encoded}" width="36">
+            <h2 style="margin:0;">{title}</h2>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 # ----------------------------------------------------------------------------
 # Sidebar navigation
 # ----------------------------------------------------------------------------
@@ -1136,8 +1255,9 @@ else:
 
     X_scaled, X_encoded = preprocess_features(df, features)
 
-    tab_overview, tab_kmeans, tab_dbscan, tab_compare, tab_patterns,tab_patterns_dbscan, comparisons = st.tabs(
-        ["Feature Overview", "KMeans Clustering", "DBSCAN Clustering", "Algorithm Comparison", "Patterns Comparison by KMeans", "Patterns Comparison by DBSCAN", "Comparisons"]
+    tab_overview, tab_kmeans, tab_dbscan, tab_compare, tab_patterns,tab_patterns_dbscan, comparisons, Business_insights_kmeans, Business_insights_dbscan = st.tabs(
+        ["Feature Overview", "KMeans Clustering", "DBSCAN Clustering", "Algorithm Comparison", "Patterns Comparison by KMeans", 
+                    "Patterns Comparison by DBSCAN", "Comparisons", "Business Insights by Kmeans", "Business Insights by DBSCAN"]
     )
 
     # --- Feature overview ---
@@ -1525,6 +1645,14 @@ else:
     
         if fig is not None:
             st.plotly_chart(fig, use_container_width=True)
+
+    with Business_insights_kmeans:
+        show_business_insights(KMEANS_INSIGHTS, category, algorithm="K-Means", df=df)
+
+
+    with Business_insights_dbscan:
+        show_business_insights(DBSCAN_INSIGHTS, category, algorithm="DBSCAN", df=df)
+
 
     # clean up scratch columns so re-runs stay tidy
     for tmp_col in [f"_kmeans_{category}", "_profile_col", "_profile_col_db"]:

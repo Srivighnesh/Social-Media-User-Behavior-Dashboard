@@ -1,0 +1,553 @@
+{
+  "User Behavior": {
+    "business_focus": "Schedule content and notifications according to peak usage time and personalize content based on session and scrolling behaviour.",
+    "overview": "User Behaviour The K-Means model identified four social media user segments. The clusters are mainly differentiated by peak usage time, while their session frequency and scrolling behaviour are comparatively similar.",
+    "clusters": [
+      {
+        "name": "Evening-Afternoon Users",
+        "description": [
+          "Most active during 12–4 PM and 6–9 PM.",
+          "Average usage is approximately 4.95 sessions per day.",
+          "46% have medium scrolling speed.",
+          "41% prefer selected notifications.",
+          "Best suited for product promotions, shopping content, polls, advertisements, and brand campaigns.",
+          "Businesses can publish informative content in the afternoon and conversion-focused content in the evening."
+        ],
+        "business_insight": ""
+      },
+      {
+        "name": "Morning Browsers",
+        "description": [
+          "Most active between 6–10 AM.",
+          "Average usage is approximately 4.84 sessions per day, the lowest among the four groups.",
+          "47% have medium scrolling speed.",
+          "37% regularly take social media breaks, showing relatively controlled usage.",
+          "Prefer short, clear, and informative content.",
+          "Suitable content includes news updates, educational tips, motivational posts, daily summaries, and productivity content."
+        ],
+        "business_insight": ""
+      },
+      {
+        "name": "Night-Time Active Users",
+        "description": [
+          "Most active between 9 PM and midnight.",
+          "Have the highest average usage at approximately 5.12 sessions per day.",
+          "35% keep notifications always on, the highest proportion among the clusters.",
+          "20% are slow scrollers, suggesting greater attention to individual posts.",
+          "Suitable for long-form videos, livestreams, entertainment, gaming, and community discussions.",
+          "This segment offers strong engagement potential for evening entertainment campaigns."
+        ],
+        "business_insight": ""
+      },
+      {
+        "name": "Late-Night Browsers",
+        "description": [
+          "Most active after midnight.",
+          "Average usage is approximately 5.11 sessions per day.",
+          "39% are fast scrollers, the highest proportion among the clusters.",
+          "27% use social media seven or more times per day, the highest share across the groups.",
+          "Best suited for short videos, visually attractive posts, entertainment clips, and personalized recommendations.",
+          "Promotional notifications should be limited at this time to protect user wellbeing."
+        ],
+        "business_insight": ""
+      }
+    ],
+    "overall_findings": [
+      "Users access social media approximately five times per day across all clusters.",
+      "Medium scrolling speed is the most common behaviour, representing 46–47% of users.",
+      "Around 67–70% of users keep notifications always on or allow selected notifications.",
+      "Selected notifications are highly preferred, showing that users want relevant and personalized alerts.",
+      "The two night-oriented groups have slightly higher daily session frequency.",
+      "Social media break-taking patterns are similar across the clusters.",
+      "Timing is a stronger differentiator than frequency, scrolling speed, or notification settings."
+    ],
+    "business_recommendations": [
+      "Schedule content according to each segment’s peak activity time.",
+      "Use time-based notifications instead of sending the same notification to every user simultaneously.",
+      "Provide news and educational content to morning users.",
+      "Use promotional and shopping content for afternoon and evening users.",
+      "Offer immersive entertainment and community content to night-time users.",
+      "Use fast, visually engaging content for late-night users.",
+      "Personalize notifications based on user interests and behaviour.",
+      "Apply notification frequency limits and respect Do Not Disturb settings.",
+      "Conduct A/B testing to compare cluster-based scheduling with normal campaign scheduling.",
+      "Track engagement, click-through rate, conversion, retention, and notification opt-out rate for each cluster."
+    ],
+    "data_quality": "The dataset includes extreme values, such as daily usage of up to 12 hours and session durations reaching 594 minutes. These may indicate genuine high-engagement users or potential anomalies and should be reviewed. Validate the clustering results using feature scaling, the Elbow Method, Silhouette Score, and cluster stability analysis before deployment.",
+    "conclusion": "The segmentation provides a useful foundation for time-based targeting and content personalization. Businesses can use these clusters to deliver the right content at the right time, improve campaign reach, increase engagement, and reduce unnecessary notifications. The biggest opportunity is to personalize campaign timing according to each user’s peak activity period."
+  },
+  "Engagement": {
+    "business_focus": "Personalize content formats and encourage engagement through educational posts, entertainment, videos, comments, and user-generated content.",
+    "overview": "Engagement The K-Means model identified five engagement segments based on posting, likes, comments, shares, ad clicks, preferred content, and scrolling mood. The strongest differences are driven by preferred content type, while posting and commenting levels remain broadly similar.",
+    "clusters": [
+      {
+        "name": "Casual Learners",
+        "description": [
+          "Prefer meme content, despite the cluster name suggesting learning behaviour.",
+          "Average approximately 2.96 posts per week, 3.90 comments per day, and 1.83 shares per day.",
+          "Inspired is the most common scrolling mood at 19%.",
+          "Suitable for light, relatable, educational memes and easy-to-understand content."
+        ],
+        "business_insight": "Use humorous and informative content to improve engagement. This segment can be targeted with meme-based brand communication and simple educational messages."
+      },
+      {
+        "name": "Educational Engagers",
+        "description": [
+          "Prefer news content, rather than explicitly educational content.",
+          "Average approximately 2.95 posts per week, 4.11 comments per day, and 1.89 shares per day.",
+          "They have the highest average commenting rate.",
+          "Happy is the most common mood at 21%."
+        ],
+        "business_insight": "These users are suitable for news updates, explainers, industry insights, educational campaigns, and discussion-based posts. Questions and opinion polls can encourage further commenting."
+      },
+      {
+        "name": "Entertainment Enthusiasts",
+        "description": [
+          "Show a clear preference for entertainment content.",
+          "Average approximately 2.81 posts per week, the lowest among the segments.",
+          "Average 3.67 comments and 2.05 shares per day.",
+          "Neutral is the most common scrolling mood at 19%."
+        ],
+        "business_insight": "Although they post and comment less, their sharing activity is relatively strong. Use entertaining, trending, video-based, and shareable content to expand organic reach."
+      },
+      {
+        "name": "Happy Meme Viewers",
+        "description": [
+          "Prefer a mixture of:",
+          "Educational content: 27%",
+          "Reels and Shorts: 26%",
+          "Videos: 25%",
+          "Stories: 23%",
+          "Average approximately 2.90 posts per week, 4.08 comments per day, and 1.92 shares per day.",
+          "Their scrolling moods are relatively balanced."
+        ],
+        "business_insight": "This is a flexible, multi-format segment. Businesses should use a combination of short videos, educational posts, stories, and visual content to maintain interest."
+      },
+      {
+        "name": "Inspired Social Interactors",
+        "description": [
+          "Show a clear preference for photo content.",
+          "Average approximately 3.07 posts per week, the highest among the segments.",
+          "Average 3.90 comments and 2.12 shares per day, giving them the highest sharing rate.",
+          "Relaxed and stressed are the leading moods, both at 20%."
+        ],
+        "business_insight": "This is a valuable segment for user-generated content, visual storytelling, contests, brand advocacy, and community campaigns. Their relatively high posting and sharing behaviour can increase organic visibility."
+      }
+    ],
+    "overall_findings": [
+      "Users generally publish around three posts per week.",
+      "Users make approximately 3.7 to 4.1 comments per day.",
+      "Sharing is lower than commenting, averaging approximately 1.8 to 2.1 shares per day.",
+      "Inspired Social Interactors have the highest average posting and sharing levels.",
+      "Educational Engagers have the highest average commenting level.",
+      "Entertainment Enthusiasts can help increase organic reach through shareable content.",
+      "Happy Meme Viewers are suitable for multi-format campaigns.",
+      "Mood is relatively balanced across most clusters and is not as strong a differentiator as content preference."
+    ],
+    "business_recommendations": [
+      "Personalize users’ feeds according to their preferred content type.",
+      "Use news, explainers, and discussion prompts for Educational Engagers.",
+      "Create entertaining and shareable videos for Entertainment Enthusiasts.",
+      "Use a combination of Shorts, Stories, videos, and educational posts for Happy Meme Viewers.",
+      "Encourage Inspired Social Interactors to create and share user-generated content.",
+      "Use interactive polls, questions, and contests to increase comments and shares.",
+      "Compare ad-click rates across clusters before deciding advertising priority.",
+      "Monitor engagement through posting, commenting, sharing, ad clicks, and conversion rates."
+    ],
+    "data_quality": "",
+    "conclusion": "The clustering shows that content preference is the main factor separating the engagement groups. Businesses can improve engagement by delivering the correct format to each segment, encouraging highly social users to create and share content, and using cluster-specific campaigns instead of applying the same strategy to every user."
+  },
+  "Social Influence": {
+    "business_focus": "Identify suitable users for platform-specific campaigns, influencer partnerships, and creator marketing.",
+    "overview": "Social Influence The clustering identified five social-influence segments based on followers, following count, posting frequency, influencer status, and primary platform. The strongest difference between the clusters is the users’ primary social media platform, while posting frequency and influencer status are broadly similar.",
+    "clusters": [
+      {
+        "name": "Active Instagram Users",
+        "description": [
+          "Use Instagram as their primary platform.",
+          "Post approximately 3.02 times per week.",
+          "The most common posting frequency is two posts per week.",
+          "5% are classified as influencers.",
+          "18.2% publish five or more posts per week."
+        ],
+        "business_insight": "This segment is suitable for visual marketing, influencer collaborations, lifestyle campaigns, product showcases, Reels, and user-generated content. Brands should identify high-follower accounts within this group for potential partnerships."
+      },
+      {
+        "name": "Active Snapchat Users",
+        "description": [
+          "Use Snapchat as their primary platform.",
+          "Have the highest average posting frequency at approximately 3.05 posts per week.",
+          "The most common posting frequency is three posts per week.",
+          "8% are influencers, one of the highest rates among the clusters.",
+          "18.8% publish five or more posts per week."
+        ],
+        "business_insight": "This segment is suitable for short-lived, interactive, and real-time campaigns. Businesses can use Stories, filters, limited-time promotions, behind-the-scenes content, and creator partnerships to reach these users."
+      },
+      {
+        "name": "Active Twitter/X Users",
+        "description": [
+          "Use Twitter/X as their primary platform.",
+          "Post approximately 2.95 times per week.",
+          "The most common frequency is three posts per week.",
+          "7% are classified as influencers.",
+          "17.2% publish five or more posts weekly."
+        ],
+        "business_insight": "These users are valuable for real-time updates, brand conversations, customer feedback, news, thought leadership, and trend-based campaigns. Influential users can be used to increase discussion and message reach."
+      },
+      {
+        "name": "Active YouTube Users",
+        "description": [
+          "Use YouTube as their primary platform.",
+          "Post approximately 2.95 times per week.",
+          "The most common frequency is two posts per week.",
+          "6% are influencers.",
+          "15.8% publish five or more posts per week, the lowest share among the clusters."
+        ],
+        "business_insight": "This group is appropriate for long-form videos, tutorials, demonstrations, reviews, educational content, and storytelling. Because YouTube content usually requires more production effort, quality and watch time may be more important than posting frequency."
+      },
+      {
+        "name": "Balanced Platform Users",
+        "description": [
+          "Primarily use TikTok at 46%, Facebook at 31%, LinkedIn at 13%, and Pinterest at 10%.",
+          "Post approximately 2.90 times per week.",
+          "The most common posting frequency is two posts per week.",
+          "8% are influencers, tied for the highest influencer rate.",
+          "18.2% publish five or more posts per week."
+        ],
+        "business_insight": "This segment provides cross-platform marketing opportunities. Businesses can reuse and adapt campaign content across TikTok, Facebook, LinkedIn, and Pinterest instead of relying on a single platform."
+      }
+    ],
+    "overall_findings": [
+      "Users generally publish around three posts per week across all clusters.",
+      "Snapchat users have the highest average posting frequency, although the difference is small.",
+      "Influencers represent only 5% to 8% of each cluster.",
+      "Snapchat and Balanced Platform Users have the highest influencer rate at 8%.",
+      "Platform preference is a stronger cluster differentiator than posting frequency.",
+      "Most users are not formal influencers, but some may still have strong social reach or engagement.",
+      "Followers and following counts show extremely wide ranges, suggesting the presence of both ordinary users and very large accounts."
+    ],
+    "business_recommendations": [
+      "Use visual campaigns and Reels for Instagram users.",
+      "Use Stories, filters, and limited-time promotions for Snapchat users.",
+      "Use news, discussions, and real-time updates for Twitter/X users.",
+      "Use tutorials, reviews, and long-form videos for YouTube users.",
+      "Use cross-platform campaigns for Balanced Platform Users.",
+      "Identify potential micro-influencers using follower count, engagement rate, and content relevance.",
+      "Avoid selecting influencers based only on follower count. Include engagement, audience quality, and brand alignment.",
+      "Track campaign reach, engagement, conversions, follower growth, and cost per acquisition by cluster."
+    ],
+    "data_quality": "The follower count reaches 2,110,323, while the following count reaches 10,000. These extreme values could strongly affect the clustering results. Median values, percentiles, and logarithmic transformation should be considered before final interpretation. The cluster totals also vary between 99 and 101 users, so the underlying records should be checked before final reporting.",
+    "conclusion": "The social-influence clustering shows that primary platform is the main factor separating users, while posting frequency remains similar across segments. Businesses can use these clusters to select the right platform, content format, and influencer strategy. The greatest opportunity is to identify high-potential creators within each platform group and build targeted, platform-specific campaigns."
+  },
+  "Spending & Marketing": {
+    "business_focus": "Use personalized promotions, retarget occasional customers, and create offers based on spending behaviour and social-media purpose.",
+    "overview": "Spending and Marketing Business Insights from K-Means Spending and Marketing Clustering The K-Means model identified five customer segments based on advertisement clicks, social-media purchasing, monthly spending, and primary usage purpose. The strongest visible difference is the purpose for using social media, while purchasing behaviour is relatively similar across the clusters.",
+    "clusters": [
+      {
+        "name": "Budget Buyers",
+        "description": [
+          "Use social media mainly for socializing.",
+          "28% regularly purchase through social media, the highest rate among the segments.",
+          "A combined 61% purchase either regularly or sometimes.",
+          "39% have no current social-media spending."
+        ],
+        "business_insight": "This group is price-sensitive but shows strong purchase potential. Businesses should use affordable products, discounts, referral offers, flash sales, and social proof."
+      },
+      {
+        "name": "High Spenders",
+        "description": [
+          "Use social media mainly for news and updates.",
+          "22% regularly purchase through social media, the lowest rate.",
+          "However, 38% purchase occasionally.",
+          "40% have no current social-media spending."
+        ],
+        "business_insight": "This segment may respond better to informative advertising than aggressive promotions. Use premium positioning, trusted reviews, detailed product information, and news-style sponsored content."
+      },
+      {
+        "name": "Low Spenders",
+        "description": [
+          "Use social media mainly for learning.",
+          "Approximately 25% regularly purchase through social media.",
+          "Around 60% purchase regularly or sometimes.",
+          "40% have no current social-media spending."
+        ],
+        "business_insight": "Educational marketing is likely to be effective. Businesses should use tutorials, demonstrations, free trials, comparison guides, student offers, and low-cost introductory products."
+      },
+      {
+        "name": "Occasional Buyers",
+        "description": [
+          "Use social media mainly for networking.",
+          "24% regularly purchase, while 38% purchase sometimes.",
+          "A combined 62% have purchased regularly or occasionally, the highest purchase potential among the clusters.",
+          "38% have no current social-media spending."
+        ],
+        "business_insight": "This segment has strong conversion potential but may need additional encouragement. Personalized offers, professional services, limited-time discounts, testimonials, and retargeting campaigns may increase purchases."
+      },
+      {
+        "name": "Value Buyers",
+        "description": [
+          "Use social media for business/marketing and entertainment, each representing 50%.",
+          "Approximately 24% regularly purchase through social media.",
+          "Around 61% purchase regularly or sometimes.",
+          "39% have no current social-media spending."
+        ],
+        "business_insight": "These users seek both business value and entertainment. Use product bundles, value-for-money offers, entertaining advertisements, business tools, and benefit-focused messaging."
+      }
+    ],
+    "overall_findings": [
+      "Between approximately 60% and 62% of every segment purchases through social media either regularly or sometimes.",
+      "Regular purchasing ranges from approximately 22% to 28%.",
+      "Budget Buyers have the highest regular purchase rate at 28%.",
+      "Occasional Buyers have the highest combined purchase potential at 62%.",
+      "Around 38% to 40% of each segment reports no social-media purchases.",
+      "Purchasing differences are relatively small, so additional variables are needed to clearly separate spending levels.",
+      "Primary social-media purpose is the strongest visible cluster differentiator."
+    ],
+    "business_recommendations": [
+      "Provide discounts and affordable bundles to Budget Buyers.",
+      "Use informative and trustworthy advertising for High Spenders.",
+      "Deliver tutorials and educational promotions to Low Spenders.",
+      "Apply retargeting and personalized offers to Occasional Buyers.",
+      "Combine entertainment with practical benefits for Value Buyers.",
+      "Focus conversion campaigns on users who purchase “sometimes.”",
+      "Personalize advertisements according to the user’s primary purpose.",
+      "Track ad click-through rate, conversion rate, average order value, and return on advertising spend for each cluster."
+    ],
+    "data_quality": "The names High Spenders, Low Spenders, and Value Buyers cannot be fully validated from the displayed monthly-spend table because most spending values are hidden. In addition, High Spenders have the lowest regular purchase rate, which may indicate that their transactions are less frequent but larger, or that the cluster name needs revision. The following should be calculated before final reporting: • Average and median monthly spending by cluster • Average ad-click rate • Conversion rate • Average order value • Percentage of zero-spending users • Customer lifetime value • Spending outliers",
+    "conclusion": "The clustering shows meaningful differences in users’ reasons for using social media, but purchase behaviour is broadly similar across segments. The biggest opportunity is to convert occasional purchasers into regular buyers through personalized offers, relevant content, retargeting, and purpose-based advertising."
+  },
+  "Demographic & Lifestyle": {
+    "business_focus": "Develop device-specific, profession-relevant, and geographically localized campaigns.",
+    "overview": "Demographic and Lifestyle The K-Means model identified four demographic and lifestyle segments based on gender, country, profession, preferred device, and privacy settings. The strongest differences are driven by profession and preferred device, while gender and privacy preferences are relatively balanced.",
+    "clusters": [
+      {
+        "name": "Everyday Smartphone Users",
+        "description": [
+          "92% prefer smartphones, while 8% use desktops.",
+          "Gender distribution is balanced, with 48% female and 47% male.",
+          "Pakistan has the largest representation at 20%, followed by India and the USA at 16% each.",
+          "The segment includes a diverse mix of engineers, researchers, students, doctors, and other professions.",
+          "Privacy settings are mixed: 40% Friends Only, 38% Public, and 22% Private."
+        ],
+        "business_insight": "This is a broad mobile-first audience. Businesses should use mobile-optimized websites, short videos, app-based promotions, simple checkout processes, and location-specific campaigns."
+      },
+      {
+        "name": "Marketing Professionals",
+        "description": [
+          "This segment consists entirely of marketers.",
+          "73% prefer smartphones, while 20% use laptops.",
+          "Women represent 54%, the highest female share among the clusters.",
+          "India has the largest representation at 20%, followed by the USA at 15%.",
+          "43% use Friends Only privacy, while 32% maintain public profiles."
+        ],
+        "business_insight": "This segment is appropriate for advertising tools, analytics platforms, marketing software, webinars, industry reports, and professional learning. Campaigns should emphasize business value, productivity, measurable results, and return on investment."
+      },
+      {
+        "name": "Professional Laptop/TV Users",
+        "description": [
+          "85% prefer laptops and 15% prefer Smart TVs.",
+          "Gender distribution is balanced, with 48% female and 47% male.",
+          "Pakistan is the largest country group at 18%, followed by India and the USA at 16% each.",
+          "Teachers have the highest professional representation at 14%.",
+          "This cluster has the highest proportion of public profiles at 40%."
+        ],
+        "business_insight": "These users are suitable for long-form content, online learning, professional software, webinars, streaming services, and detailed product information. Laptop-based campaigns should provide richer and more immersive experiences."
+      },
+      {
+        "name": "Social Tablet Users",
+        "description": [
+          "100% prefer tablets.",
+          "Gender distribution remains balanced, with 47% female and 46% male.",
+          "Pakistan has the largest representation at 18%, followed by India at 13% and the UAE at 12%.",
+          "Teachers represent the largest profession at 16%, followed by entrepreneurs at 13%.",
+          "42% use Friends Only settings.",
+          "28% maintain private profiles, the highest proportion across the clusters."
+        ],
+        "business_insight": "This segment is suitable for interactive learning, digital reading, visual browsing, educational applications, shopping catalogues, and family-oriented content. Privacy-sensitive and permission-based marketing should be prioritized."
+      }
+    ],
+    "overall_findings": [
+      "Preferred device is the strongest lifestyle differentiator.",
+      "Smartphones dominate Everyday Smartphone Users and Marketing Professionals.",
+      "Professional Laptop/TV Users are suitable for detailed and long-form content.",
+      "Social Tablet Users form a completely tablet-focused segment.",
+      "Gender distribution is relatively balanced across all clusters.",
+      "India, Pakistan, and the USA have strong representation in several segments.",
+      "Friends Only is the most common privacy setting in three clusters.",
+      "Professional Laptop/TV Users are slightly more open to public profiles.",
+      "Social Tablet Users show the strongest preference for private profiles.",
+      "Profession strongly separates Marketing Professionals from the other segments."
+    ],
+    "business_recommendations": [
+      "Use mobile-first advertising for Everyday Smartphone Users.",
+      "Promote analytics tools and professional services to Marketing Professionals.",
+      "Deliver long-form educational and professional content to Laptop/TV Users.",
+      "Use interactive, visual, and educational content for Tablet Users.",
+      "Customize campaigns according to country and device type.",
+      "Keep landing pages responsive across smartphones, laptops, tablets, and Smart TVs.",
+      "Respect privacy settings when using personalization and targeted advertising.",
+      "Track engagement, conversion, device performance, and campaign response by cluster."
+    ],
+    "data_quality": "The dataset includes extreme values, such as daily usage of up to 12 hours. These may indicate genuine high-engagement users or potential anomalies and should be reviewed. Validate the clustering results using feature scaling, the Elbow Method, Silhouette Score, and cluster stability analysis before deployment.",
+    "conclusion": "The K-Means segmentation shows that device preference and profession are the primary factors distinguishing demographic and lifestyle groups. Businesses can improve engagement by adapting content format, campaign design, and customer experience to each segment’s preferred device. Gender and privacy differences are relatively small, so they should be used as supporting variables rather than the main basis for targeting."
+  },
+  "Mental Health & Usage Impact": {
+    "business_focus": "Offer optional break reminders, screen-time summaries, quiet hours, bedtime mode, and notification controls.",
+    "overview": "Mental Health and Digital Wellbeing These clusters are behavioural segments and not medical diagnoses. The Kmeasn model identified five mental-health and digital-wellbeing segments based on sleep disruption, self-reported mental-health score, screen-time concern, and daily social-media usage.",
+    "clusters": [
+      {
+        "name": "Balanced Users",
+        "description": [
+          "Sleep disruption is mixed:",
+          "41% mild impact",
+          "28% moderate impact",
+          "31% no impact",
+          "100% report being somewhat concerned about screen time.",
+          "Daily usage appears distributed across several usage levels."
+        ],
+        "business_insight": "These users recognize possible screen-time concerns but do not show a uniform level of sleep disruption. Offer optional usage summaries, break reminders, notification controls, and personalized screen-time goals."
+      },
+      {
+        "name": "Healthy Users",
+        "description": [
+          "100% report no sleep disruption.",
+          "52% are concerned about screen time, while 48% are not.",
+          "The segment contains users with different daily usage patterns and mental-health scores."
+        ],
+        "business_insight": "Encourage users to maintain healthy habits through weekly usage reports, positive reinforcement, quiet-hour controls, and optional wellbeing features. Avoid unnecessary intervention when users report no sleep impact."
+      },
+      {
+        "name": "High Impact Users",
+        "description": [
+          "100% report severe sleep disruption.",
+          "34% are concerned about screen time.",
+          "28% are somewhat concerned.",
+          "38% report no screen-time concern."
+        ],
+        "business_insight": "This segment may benefit from strong but optional wellbeing controls, including bedtime reminders, quiet mode, reduced late-night notifications, autoplay controls, and session-duration alerts. Engagement campaigns should not exploit late-night activity or sleep disruption."
+      },
+      {
+        "name": "Mid Impact Users",
+        "description": [
+          "100% report mild sleep disruption.",
+          "55% are concerned about screen time.",
+          "45% report no concern.",
+          "Daily usage includes at least one extreme value of 12 hours."
+        ],
+        "business_insight": "Provide moderate interventions such as break reminders, notification summaries, usage limits, and bedtime settings. The 12-hour usage value should be reviewed as a possible outlier or background-app activity."
+      },
+      {
+        "name": "Moderate Impact Users",
+        "description": [
+          "100% report moderate sleep disruption.",
+          "56% are concerned about screen time, the highest rate among the segments.",
+          "44% report no concern.",
+          "Usage is distributed across different daily activity levels."
+        ],
+        "business_insight": "This segment shows a strong need for digital-wellbeing support. Offer scheduled breaks, nighttime notification reduction, session alerts, quiet hours, and clear controls for managing recommended content."
+      }
+    ],
+    "overall_findings": [
+      "Sleep disruption is the strongest factor separating the clusters.",
+      "Screen-time concern does not always match reported sleep impact.",
+      "Some High Impact Users report severe sleep disruption but no screen-time concern.",
+      "Moderate Impact Users have the highest screen-time concern at 56%.",
+      "Healthy Users report no sleep disruption, although 52% remain concerned about screen time.",
+      "Daily usage alone may not explain wellbeing outcomes. Usage timing, session length, notification frequency, and nighttime activity should also be examined.",
+      "Self-reported mental-health scores cannot be compared accurately because the displayed table is incomplete."
+    ],
+    "business_recommendations": [
+      "Provide optional screen-time dashboards and weekly usage summaries.",
+      "Reduce late-night notifications for users who enable wellbeing controls.",
+      "Offer bedtime mode, quiet hours, break reminders, and session-duration alerts.",
+      "Avoid targeting vulnerable segments with campaigns designed to increase excessive usage.",
+      "Make all wellbeing settings easy to activate, change, and disable.",
+      "Use aggregated data and protect sensitive mental-health information.",
+      "Review extreme daily-usage values before using them in decision-making.",
+      "Measure feature adoption, notification reduction, nighttime usage, and user satisfaction.",
+      "Do not treat these clusters as clinical mental-health categories."
+    ],
+    "data_quality": "The dataset includes extreme values, such as daily usage of up to 12 hours. These may indicate genuine high-engagement users or potential anomalies and should be reviewed. Self-reported mental-health scores are incomplete, so the underlying records should be checked before final reporting.",
+    "conclusion": "DBSCAN identifies meaningful differences in sleep disruption and screen-time concern. The main business opportunity is to improve user trust and long-term platform sustainability through responsible digital-wellbeing features."
+  },
+  "Platform Usage Behavior": {
+    "business_focus": "Personalize campaigns according to preferred platform, content type, privacy setting, and peak usage time.",
+    "overview": "Platform Usage Behaviour The K-Means model identified five platform-usage segments based on primary platform, peak usage time, preferred content type, and privacy settings. The strongest difference between the clusters is content preference, while platform choice and privacy behaviour are relatively similar.",
+    "clusters": [
+      {
+        "name": "Entertainment Social Users",
+        "description": [
+          "100% prefer entertainment content.",
+          "Twitter/X is the leading platform at 21%, followed by Instagram at 20% and TikTok at 19%.",
+          "Evening is the main usage period at 27%, followed by night at 24%.",
+          "Privacy settings include 40% Friends Only, 38% Public, and 22% Private."
+        ],
+        "business_insight": "This segment is suitable for trending entertainment, humorous campaigns, influencer content, competitions, and shareable videos. Evening campaigns are likely to achieve stronger reach."
+      },
+      {
+        "name": "Mixed Social Users",
+        "description": [
+          "Prefer educational content at 35%, memes at 34%, and videos at 32%.",
+          "TikTok is the leading platform at 21%, followed by Instagram at 19%.",
+          "Evening is the main usage period at 33%.",
+          "38% use Friends Only settings, while 36% maintain public profiles."
+        ],
+        "business_insight": "This segment requires a diversified content strategy. Businesses should combine useful information, humour, and video storytelling rather than relying on a single format."
+      },
+      {
+        "name": "News Socaial Professionals",
+        "description": [
+          "100% prefer news content.",
+          "Instagram is the leading platform at 23%, followed by TikTok at 19%.",
+          "Evening is the main usage period at 31%, followed by night at 24%.",
+          "43% use Friends Only settings, while 39% have public profiles."
+        ],
+        "business_insight": "This group is suitable for industry news, business updates, explainers, thought leadership, and professional discussions. Brands should prioritize credibility, accuracy, and informative messaging."
+      },
+      {
+        "name": "Short-Video Social Users",
+        "description": [
+          "53% prefer Reels/Shorts, while 47% prefer Stories.",
+          "Instagram is the leading platform at 22%, followed by TikTok at 17%.",
+          "Night is the main usage period at 27%, followed by evening at 26%.",
+          "40% use Friends Only settings, while 39% have public profiles."
+        ],
+        "business_insight": "Use short, mobile-friendly videos with strong openings and clear messages. Reels, Stories, product demonstrations, creator content, polls, and limited-time offers are suitable for this segment."
+      },
+      {
+        "name": "Visual Social Users",
+        "description": [
+          "100% prefer photo content.",
+          "TikTok is the leading platform at 23%, followed by Instagram at 20%.",
+          "Evening is the main usage period at 34%, the highest evening concentration across the clusters.",
+          "46% use Friends Only settings, the highest rate among the segments."
+        ],
+        "business_insight": "This segment is suitable for visual storytelling, product photography, lifestyle content, image collections, infographics, and user-generated content. Campaigns should emphasize visual quality and authenticity."
+      }
+    ],
+    "overall_findings": [
+      "Content preference is the strongest factor distinguishing the clusters.",
+      "Instagram and TikTok have strong representation across most segments.",
+      "Evening is the dominant usage period in four clusters.",
+      "Short-Video Social Users are slightly more active at night.",
+      "Friends Only is the most common privacy setting in every segment.",
+      "Private profiles represent only 18% to 26% across the clusters.",
+      "Platform percentages are distributed across multiple channels, so users should not be assumed to use only one platform.",
+      "Privacy differences are relatively small and should not be the primary basis for segmentation."
+    ],
+    "business_recommendations": [
+      "Schedule most campaigns during the evening and night.",
+      "Create entertaining and shareable posts for Entertainment Social Users.",
+      "Combine education, memes, and videos for Mixed Social Users.",
+      "Use trusted and informative messaging for News Socaial Professionals.",
+      "Prioritize Reels, Shorts, and Stories for Short-Video Social Users.",
+      "Use strong photography and visual storytelling for Visual Social Users.",
+      "Adapt content to each platform instead of publishing identical material everywhere.",
+      "Respect privacy settings and obtain consent for personalized marketing.",
+      "Track reach, engagement, video completion, shares, click-through rate, and conversion by cluster.",
+      "Conduct A/B tests to identify the best platform, format, and publishing time for each segment."
+    ],
+    "data_quality": "Some percentages total approximately 99% or 101% due to rounding. The 'Diverse Platform Users' cluster appears to be heavily concentrated on Pinterest, so the interpretation of the term 'Diverse' should be validated against the underlying data. Similarly, the 'Video Lovers' cluster is primarily associated with Pinterest users despite its video-oriented label, and this should be verified to ensure consistency with the dataset. Additionally, DBSCAN configuration parameters, including eps, min_samples, cluster sizes, and identified noise points, should be documented to improve the transparency, reproducibility, and reliability of the clustering results.",
+    "conclusion": "The K-Means analysis shows that preferred content type and peak usage time are the main drivers of platform behaviour. Businesses can improve campaign performance by delivering the correct content format during each cluster’s most active time."
+  }
+}
