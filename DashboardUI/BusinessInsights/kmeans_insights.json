@@ -13,7 +13,7 @@
           "Best suited for product promotions, shopping content, polls, advertisements, and brand campaigns.",
           "Businesses can publish informative content in the afternoon and conversion-focused content in the evening."
         ],
-        "business_insight": ""
+        "business_insight": "Evening-Afternoon Users are the most engaged segment, making them ideal for driving conversions and sales through targeted promotional content."
       },
       {
         "name": "Morning Browsers",
@@ -25,7 +25,7 @@
           "Prefer short, clear, and informative content.",
           "Suitable content includes news updates, educational tips, motivational posts, daily summaries, and productivity content."
         ],
-        "business_insight": ""
+        "business_insight": "Morning Browsers are most receptive to informative and productivity-focused content, making them ideal for sharing news updates, educational tips, and motivational posts during their peak activity hours."
       },
       {
         "name": "Night-Time Active Users",
@@ -37,7 +37,7 @@
           "Suitable for long-form videos, livestreams, entertainment, gaming, and community discussions.",
           "This segment offers strong engagement potential for evening entertainment campaigns."
         ],
-        "business_insight": ""
+        "business_insight": "Night-Time Active Users are highly engaged and prefer immersive content, making them ideal for long-form videos, livestreams, and community-driven entertainment campaigns."
       },
       {
         "name": "Late-Night Browsers",
@@ -49,7 +49,7 @@
           "Best suited for short videos, visually attractive posts, entertainment clips, and personalized recommendations.",
           "Promotional notifications should be limited at this time to protect user wellbeing."
         ],
-        "business_insight": ""
+        "business_insight": "Late-Night Browsers are highly active and prefer fast-paced, visually engaging content, making them ideal for short videos, entertainment clips, and personalized recommendations."
       }
     ],
     "overall_findings": [
@@ -154,7 +154,7 @@
       "Compare ad-click rates across clusters before deciding advertising priority.",
       "Monitor engagement through posting, commenting, sharing, ad clicks, and conversion rates."
     ],
-    "data_quality": "",
+    "data_quality": "The data quality is good, with a sufficient sample size and diverse user behavior patterns across the identified segments.",
     "conclusion": "The clustering shows that content preference is the main factor separating the engagement groups. Businesses can improve engagement by delivering the correct format to each segment, encouraging highly social users to create and share content, and using cluster-specific campaigns instead of applying the same strategy to every user."
   },
   "Social Influence": {
