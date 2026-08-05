@@ -179,7 +179,7 @@
       "Use mood-sensitive recommendations, particularly positive content for bored or stressed users.",
       "Track ad-click rate, conversion rate, comments, shares, and content completion by segment."
     ],
-    "data_quality": "s • The cluster totals vary between approximately 97 and 101 records, which should be checked before final reporting. • Exploratory Users show unusual distributions in posting, likes, shares, and ad clicks. This may be a valid niche segment or a group of outliers detected by DBSCAN. • Since the ad-click-rate table is truncated, average click rates cannot be calculated accurately from the displayed results. • DBSCAN parameters such as eps and min_samples should be documented and validated.",
+    "data_quality": "The cluster totals vary between approximately 97 and 101 records, which should be checked before final reporting. Exploratory Users show unusual distributions in posting, likes, shares, and ad clicks. This may be a valid niche segment or a group of outliers detected by DBSCAN.  Since the ad-click-rate table is truncated, average click rates cannot be calculated accurately from the displayed results.  DBSCAN parameters such as eps and min_samples should be documented and validated.",
     "conclusion": "The DBSCAN analysis shows that preferred content type is the main factor separating engagement groups. The Exploratory Users segment offers the highest engagement and advertising potential, while the remaining segments require content-specific strategies. Applying personalized content recommendations can improve engagement, organic sharing, ad performance, and campaign relevance."
   },
   "Social Influence": {
@@ -253,7 +253,7 @@
       "Track reach, impressions, engagement, conversions, follower growth, and campaign cost by cluster.",
       "Monitor high-influence accounts for fake followers or unusually high following counts."
     ],
-    "data_quality": "s • The maximum follower count is 2,110,323, while the following count reaches 10,000. • These extreme values may represent genuine high-influence users, automated accounts, or data anomalies. • Follower and following counts should be log-transformed before clustering because of their highly skewed distributions. • The High-Influence Outliers table totals approximately 99 due to rounded percentages. • DBSCAN parameters such as eps and min_samples should be documented and validated.",
+    "data_quality": " The maximum follower count is 2,110,323, while the following count reaches 10,000. • These extreme values may represent genuine high-influence users, automated accounts, or data anomalies. • Follower and following counts should be log-transformed before clustering because of their highly skewed distributions. • The High-Influence Outliers table totals approximately 99 due to rounded percentages. • DBSCAN parameters such as eps and min_samples should be documented and validated.",
     "conclusion": "The DBSCAN analysis identifies four meaningful social-influence groups. General Social Media Users are useful for broad marketing reach, while LinkedIn Professionals and Pinterest Creators support platform-specific campaigns. High-Influence Outliers offer the greatest reach but require careful evaluation before influencer partnerships. The main business opportunity is to combine platform-specific targeting with influence-level analysis to select the right users, content formats, and campaign strategies."
   },
   "Spending & Marketing": {
