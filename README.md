@@ -2,7 +2,7 @@
 
 A Streamlit dashboard for analyzing social media user behavior using **Exploratory Data Analysis (EDA)** and **Unsupervised Machine Learning** techniques. The project applies **K-Means** and **DBSCAN** clustering to identify user behavior patterns and provides interactive visualizations for cluster profiling.
 
-# Project URL: https://dasboard-socaial-media.streamlit.app/
+# Live URL: https://dasboard-socaial-media.streamlit.app/
 
 ---
 ## 🚀 Features
